@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"  content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+
+    <title><%= typeof title !== 'undefined' ? title : '' %></title>
+
+    <meta name="description" content="<%= typeof description !== 'undefined' ? description : '' %>">
+
+    <meta property="og:url" content="<%=process.env.APP_URL%><%= typeof path !== 'undefined' ? path : ''%>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : '' %>">
+    <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : '' %>">
+    <meta property="og:image" content="<%= typeof image !== 'undefined' ? image : '' %>">
+
+    <%if (typeof dims !== 'undefined' && dims.width) { %>
+        <meta property="og:image:width" content="<%= dims.width %>">
+        <meta property="og:image:height" content="<%= dims.height %>">
+    <% } %>
+    %>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="<%=process.env.APP_DOMAIN%>">
+    <meta property="twitter:url" content="<%=process.env.APP_URL%><%= typeof path !== 'undefined' ? path : ''%>">
+    <meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : '' %>">
+    <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : '' %>">
+    <meta name="twitter:image" content="<%= typeof image !== 'undefined' ? image : '' %>">
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <link rel="stylesheet" href="https://use.typekit.net/urq3cye.css">
+</head>
+<body>
+
+<div class="body-wrapper">
+    <%- include('partials/header')%>
+
+    <div class="page-wrapper">
+        <%-body%>
+    </div>
+
+    <%- include('partials/footer')%>
+</div>
+
+<script>
+    window.webStyles = <%- JSON.stringify(webStyles) %>;
+
+    for(let k in webStyles) {
+        if(webStyles[k].includes('px')) {
+            webStyles[k] = Number.parseInt(webStyles[k].replace('px', ''));
+        }
+    }
+</script>
+
+<script src="/js/helpers.js"></script>
+
+<%-defineContent('scripts')%>
+
+</body>
+</html>

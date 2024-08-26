@@ -1,0 +1,62 @@
+header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 10vw;
+}
+header #logo {
+  background-image: url(https://befriend.s3.amazonaws.com/befriend-logo-new.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 50px;
+  width: 133.125px;
+}
+
+#page.home h1 {
+  text-align: center;
+}
+#page.home .count {
+  text-align: center;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "area-normal", sans-serif;
+  height: 100vh !important;
+  height: calc(var(--1dvh, 1vh) * 100) !important;
+  height: 100dvh !important;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 500;
+}
+
+h2 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.body-wrapper {
+  height: 100%;
+}
+
+#page {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*# sourceMappingURL=styles.css.map */

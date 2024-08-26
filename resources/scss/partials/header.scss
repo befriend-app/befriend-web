@@ -1,0 +1,16 @@
+header {
+    height: $header_h;
+    display: flex;
+    align-items: center;
+    padding: 0 10vw;
+
+    #logo {
+        $r: 1065 / 400;
+        $h: 50px;
+        background-image: url(https://befriend.s3.amazonaws.com/befriend-logo-new.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: $h;
+        width: $h * $r;
+    }
+}
