@@ -33,7 +33,7 @@ async function handleSession(req, res, next) {
         function createSession() {
             return new Promise(async (resolve, reject) => {
 
-                let session_str = sharedService.createToken(20);
+                let session_str = generateToken(20);
 
                 //check for existence in rare  cases
                 try {
