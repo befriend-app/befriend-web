@@ -253,18 +253,21 @@
     let marker_int = 0;
 
     let iconDims = {
-        w: 30,
-        h: 30
+        r: 1200 / 1572,
+        h: 60,
+        w: null
     };
 
+    iconDims.w = iconDims.r * iconDims.h;
+
     let mapIcon = new L.Icon({
-        iconUrl: 'https://befriend.s3.amazonaws.com/befriend-icon.png',
+        iconUrl: 'https://befriend.s3.amazonaws.com/befriend-heart-pin.png',
         iconSize: [iconDims.w, iconDims.h],
-        iconAnchor: [iconDims.w / 2, iconDims.h / 2],
-        popupAnchor: [iconDims.w / 2, iconDims.h / 2],
+        iconAnchor: [iconDims.w / 2, iconDims.h - 2],
+        popupAnchor: [0, -iconDims.h + 12],
         // shadowUrl: 'my-icon-shadow.png',
-        shadowSize: [68, 95],
-        shadowAnchor: [22, 94]
+        // shadowSize: [68, 95],
+        // shadowAnchor: [22, 94]
     });
 
     for(let metro of metros) {
