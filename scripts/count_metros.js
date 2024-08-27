@@ -53,7 +53,7 @@ let db = require('../services/db');
             .where('metro_name', metro_name)
             .update({
                 metro_count: metro_count,
-                updated_at: getLocalDate()
+                updated: getLocalDate()
             });
     }
 
