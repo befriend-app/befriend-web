@@ -15,13 +15,11 @@ exports.up = function(knex) {
         })
         .createTable('metros', function (table) {
             table.increments('id');
-
             table.string('metro_name', 300).nullable();
             table.string('metro_emoji', 100).nullable();
             table.integer('metro_count').defaultTo(0);
             table.float('lat', 14,10).nullable();
             table.float('lon', 14,10).nullable();
-
             table.timestamp('created').nullable();
             table.timestamp('updated').nullable();
         });
@@ -29,6 +27,6 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
     return knex.schema
-        .dropTable('users_payments')
-        .dropTable('payment_methods');
+        .dropTable('waitlist')
+        .dropTable('metros');
 };

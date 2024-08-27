@@ -1,11 +1,17 @@
 const fs = require("fs");
 const dayjs = require("dayjs");
-const utc = require('dayjs/plugin/utc')
-const timezone = require('dayjs/plugin/timezone')
+const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
+const geoip = require('geoip-lite');
+const geolib = require('geolib');
+
+const dbService = require('../services/db');
+
+
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-global.serverTimezoneString = 'America/Chicago';
+global.serverTimezoneString = process.env.TZ || 'America/Chicago';
 
 Object.defineProperty(String.prototype, 'capitalize', {
     value: function() {
@@ -79,7 +85,7 @@ global.joinPaths = function() {
     return url;
 };
 
-global.getChicagoDate = function () {
+global.getLocalDate = function () {
     return getLocalDateStr(changeTimezone(new Date(), serverTimezoneString));
 }
 
@@ -617,3 +623,41 @@ module.exports = {
         });
     },
 };
+
+global.getClosestMetroByIp = function (ip_address) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let conn = await dbService.conn();
+
+            if(typeof metrosDataArr === 'undefined') {
+                global.metrosDataArr = await conn('metros')
+                    .select('*', 'lat AS latitude', 'lon AS longitude');
+            }
+
+            let geo = geoip.lookup(ip_address);
+
+            let from = {
+                latitude: geo.ll[0],
+                longitude: geo.ll[1]
+            };
+
+            let closest = geolib.findNearest(from, metrosDataArr);
+
+            let distance_meters = geolib.getPreciseDistance(from, closest);
+
+            let distance = getMilesFromMeters(distance_meters);
+
+            if(distance < 250) {
+                return resolve(closest);
+            }
+
+            return resolve(null);
+        } catch(e) {
+            return reject(e);
+        }
+    });
+}
+
+global.getMilesFromMeters = function (meters) {
+    return meters * 0.000621371192;
+}
