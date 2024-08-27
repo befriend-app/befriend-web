@@ -15,8 +15,34 @@ header #logo {
 header .links {
   margin-left: auto;
   display: flex;
-  gap: 0 7.5vw;
+  gap: 0 6vw;
+  font-size: 17px;
+}
+
+footer {
+  padding: 60px 10vw;
+  background-color: #2d86c7;
+  display: flex;
+  gap: 0 10vw;
+  justify-content: end;
+}
+footer .section {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+footer .section .name {
   font-size: 20px;
+}
+footer .section .links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+  margin-top: 20px;
+  font-weight: 300;
+}
+footer .section .links .link {
+  cursor: pointer;
 }
 
 #page.home .hero {
@@ -100,6 +126,10 @@ h2 {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+*:focus {
+  outline: none;
 }
 
 /*# sourceMappingURL=styles.css.map */
