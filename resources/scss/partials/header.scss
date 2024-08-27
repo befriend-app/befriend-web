@@ -3,14 +3,22 @@ header {
     display: flex;
     align-items: center;
     padding: 0 10vw;
+    background: $brand_color_b;
 
     #logo {
-        $r: 1065 / 400;
-        $h: 50px;
-        background-image: url(https://befriend.s3.amazonaws.com/befriend-logo-new.png);
+        $r: 2020 / 400;
+        $h: 30px;
+        background-image: url(https://befriend.s3.amazonaws.com/befriend-logo-simple.png);
         background-repeat: no-repeat;
         background-size: contain;
         height: $h;
         width: $h * $r;
+    }
+
+    .links {
+        margin-left: auto;
+        display: flex;
+        gap: 0 7.5vw;
+        font-size: 20px;
     }
 }

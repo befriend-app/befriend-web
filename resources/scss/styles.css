@@ -3,20 +3,58 @@ header {
   display: flex;
   align-items: center;
   padding: 0 10vw;
+  background: #e0f3fd;
 }
 header #logo {
-  background-image: url(https://befriend.s3.amazonaws.com/befriend-logo-new.png);
+  background-image: url(https://befriend.s3.amazonaws.com/befriend-logo-simple.png);
   background-repeat: no-repeat;
   background-size: contain;
-  height: 50px;
-  width: 133.125px;
+  height: 30px;
+  width: 151.5px;
+}
+header .links {
+  margin-left: auto;
+  display: flex;
+  gap: 0 7.5vw;
+  font-size: 20px;
 }
 
+#page.home .hero {
+  height: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 #page.home h1 {
   text-align: center;
+  font-size: 70px;
 }
-#page.home .count {
-  text-align: center;
+#page.home h1 .friends {
+  font-size: 93px;
+}
+#page.home .discord {
+  background: #5865f2;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 8px 0px;
+  margin: auto;
+  border-radius: 8px;
+  margin-top: 10px;
+  gap: 0 12px;
+  width: 334px;
+  justify-content: center;
+}
+#page.home .discord .icon {
+  height: 24px;
+}
+#page.home .discord .icon svg {
+  fill: white;
+  height: inherit;
+}
+#page.home .discord .invite {
+  font-weight: 300;
+  font-size: 18px;
 }
 
 html, body {
@@ -26,7 +64,8 @@ html, body {
 }
 
 body {
-  font-family: "area-normal", sans-serif;
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
   height: 100vh !important;
   height: calc(var(--1dvh, 1vh) * 100) !important;
   height: 100dvh !important;
@@ -34,7 +73,7 @@ body {
 
 h1 {
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 h2 {
@@ -47,6 +86,10 @@ h2 {
 }
 
 .body-wrapper {
+  height: 100%;
+}
+
+.page-wrapper {
   height: 100%;
 }
 

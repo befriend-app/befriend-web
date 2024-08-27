@@ -12,7 +12,9 @@ html, body {
 }
 
 body {
-    font-family: 'area-normal', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+    font-optical-sizing: auto;
+
     height: 100vh !important;
     height: calc((var(--1dvh, 1vh) * 100)) !important;
     height: 100dvh !important;
@@ -20,7 +22,7 @@ body {
 
 h1 {
     margin: 0;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 h2 {
@@ -36,8 +38,13 @@ h2 {
     height: 100%;
 }
 
+.page-wrapper {
+    height: 100%;
+}
+
 #page {
     height: 100%;
+    //padding-top: 30px;
 }
 
 a {

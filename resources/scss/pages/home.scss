@@ -1,9 +1,50 @@
 #page.home {
-    h1 {
-        text-align: center;
+    .hero {
+        height: calc(100% - #{$header_h});
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    .count {
+    h1 {
         text-align: center;
+
+        font-size: 70px;
+
+        .friends {
+            font-size: 93px;
+        }
     }
+
+    .discord {
+        background: #5865f2;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 8px 0px;
+        margin: auto;
+        border-radius: 8px;
+        margin-top: 10px;
+        gap: 0 12px;
+        width: 334px;
+        justify-content: center;
+
+        .icon {
+            $h: 24px;
+            height: $h;
+
+            svg {
+                fill: white;
+                height: inherit;
+            }
+        }
+
+        .invite {
+            //text-align: center;
+            font-weight: 300;
+            font-size: 18px;
+        }
+    }
+
 }
