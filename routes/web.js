@@ -28,5 +28,17 @@ router.get('/discord', function (req, res, next) {
     });
 });
 
+router.get('/test-map', function (req, res, next) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await webController.getMap(req, res);
+        } catch (e) {
+            return res.json("Error loading page", 400);
+        }
+
+        resolve();
+    });
+});
+
 
 module.exports = router;
