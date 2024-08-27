@@ -15,8 +15,26 @@ header #logo {
 header .links {
   margin-left: auto;
   display: flex;
-  gap: 0 6vw;
+  gap: 0 60px;
   font-size: 17px;
+  align-items: center;
+}
+header .links .waitlist {
+  background-color: #2d86c7;
+  padding: 6px 16px;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+}
+header .links a {
+  position: relative;
+}
+header .links .in-person {
+  font-size: 13px;
+  position: absolute;
+  left: 0;
+  top: -16px;
+  width: 80px;
 }
 
 footer {
@@ -53,10 +71,7 @@ footer .section .links .link {
 }
 #page.home h1 {
   text-align: center;
-  font-size: 70px;
-}
-#page.home h1 .friends {
-  font-size: 93px;
+  font-size: 60px;
 }
 #page.home .discord {
   background: #5865f2;

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,
+        initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+
+
+    <style>
+        #map {
+            position: relative;
+            width: 100.0%;
+            height: 100.0%;
+            left: 0.0%;
+            top: 0.0%;
+        }
+        .leaflet-container { font-size: 1rem; }
+    </style>
+
+</head>
+<body>
+<div class="folium-map" id="map" ></div>
+</body>
+<script>
+    let metros = [
+        {
+            coordinates: [41.8755616, -87.6244212],
+            count: 81
+        },
+        {
+            coordinates: [37.7792588, -122.4193286],
+            count: 13
+        },
+        {
+            coordinates: [39.9527237, -75.1635262],
+            count: 15
+        },
+        {
+            coordinates: [48.8534951, 2.3483915],
+            count: 1
+        },
+        {
+            coordinates: [32.7762719, -96.7968559],
+            count: 7
+        },
+        {
+            coordinates: [34.0536909, -118.242766],
+            count: 19
+        },
+        {
+            coordinates: [36.1672559, -115.148516],
+            count: 7
+        },
+        {
+            coordinates: [42.3554334, -71.060511],
+            count: 13
+        },
+        {
+            coordinates: [32.7174202, -117.162772],
+            count: 9
+        },
+        {
+            coordinates: [43.074761, -89.3837613],
+            count: 14
+        },
+        {
+            coordinates: [45.5202471, -122.674194],
+            count: 7
+        },
+        {
+            coordinates: [28.5421109, -81.3790304],
+            count: 21
+        },
+        {
+            coordinates: [38.8950368, -77.0365427],
+            count: 33
+        },
+        {
+            coordinates: [33.7489924, -84.3902644],
+            count: 17
+        },
+        {
+            coordinates: [35.9486454, -78.8369763],
+            count: 4
+        },
+        {
+            coordinates: [35.0841034, -106.650985],
+            count: 4
+        },
+        {
+            coordinates: [40.7127281, -74.0060152],
+            count: 42
+        },
+        {
+            coordinates: [35.2272086, -80.8430827],
+            count: 3
+        },
+        {
+            coordinates: [47.6038321, -122.3302003],
+            count: 9
+        },
+        {
+            coordinates: [31.7788242, 35.2257626],
+            count: 1
+        },
+        {
+            coordinates: [33.4484367, -112.074141],
+            count: 3
+        },
+        {
+            coordinates: [-37.8142454, 144.9631732],
+            count: 1
+        },
+        {
+            coordinates: [39.9622601, -83.0007065],
+            count: 21
+        },
+        {
+            coordinates: [39.7683331, -86.1583502],
+            count: 7
+        },
+        {
+            coordinates: [30.2711286, -97.7436995],
+            count: 3
+        },
+        {
+            coordinates: [37.3361663, -121.890591],
+            count: 13
+        },
+        {
+            coordinates: [39.100105, -94.5781416],
+            count: 12
+        },
+        {
+            coordinates: [29.7589382, -95.3676974],
+            count: 13
+        },
+        {
+            coordinates: [45.5202471, -122.674194],
+            count: 1
+        },
+        {
+            coordinates: [39.7392364, -104.984862],
+            count: 11
+        },
+        {
+            coordinates: [29.9759983, -90.0782127],
+            count: 9
+        },
+        {
+            coordinates: [42.8867166, -78.8783922],
+            count: 7
+        },
+        {
+            coordinates: [40.7596198, -111.886797],
+            count: 2
+        },
+        {
+            coordinates: [38.6280278, -90.1910154],
+            count: 8
+        },
+        {
+            coordinates: [21.304547, -157.855676],
+            count: 4
+        },
+        {
+            coordinates: [29.4246002, -98.4951405],
+            count: 4
+        },
+        {
+            coordinates: [39.1014537, -84.5124602],
+            count: 4
+        },
+        {
+            coordinates: [34.7465071, -92.2896267],
+            count: 6
+        },
+        {
+            coordinates: [6.4550575, 3.3941795],
+            count: 1
+        },
+        {
+            coordinates: [43.6166163, -116.200886],
+            count: 3
+        },
+        {
+            coordinates: [50.8550018, 4.3512333761166175],
+            count: 3
+        },
+        {
+            coordinates: [18.5213738, 73.8545071],
+            count: 1
+        },
+        {
+            coordinates: [34.727279, -86.492671],
+            count: 1
+        },
+        {
+            coordinates: [51.5074456, -0.1277653],
+            count: 1
+        },
+        {
+            coordinates: [45.4641943, 9.1896346],
+            count: 2
+        },
+        {
+            coordinates: [41.0766019, 29.052495],
+            count: 1
+        },
+        {
+            coordinates: [59.3251172, 18.0710935],
+            count: 1
+        }
+    ];
+
+    let map = L.map(
+        "map",
+        {
+            center: [41.8755616, -87.6244212],
+            crs: L.CRS.EPSG3857,
+            zoom: 5,
+            zoomControl: true,
+            preferCanvas: false,
+        }
+    );
+
+    let tile_layer = L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+    );
+
+    tile_layer.addTo(map);
+
+    let marker_int = 0;
+
+    let iconDims = {
+        w: 30,
+        h: 30
+    };
+
+    let mapIcon = new L.Icon({
+        iconUrl: 'https://befriend.s3.amazonaws.com/befriend-icon.png',
+        iconSize: [iconDims.w, iconDims.h],
+        iconAnchor: [iconDims.w / 2, iconDims.h / 2],
+        popupAnchor: [iconDims.w / 2, iconDims.h / 2],
+        // shadowUrl: 'my-icon-shadow.png',
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94]
+    });
+
+    for(let metro of metros) {
+        marker_int++;
+
+        let marker = L.marker(
+            metro.coordinates,
+            {
+                icon: mapIcon
+            }
+        ).addTo(map);
+
+        let popup = L.popup({"maxWidth": "100%"});
+
+        let marker_html = $(`<div id="marker-${marker_int}" style="width: 100.0%; height: 100.0%;">${metro.count}</div>`)[0];
+
+        popup.setContent(marker_html);
+
+        marker.bindPopup(popup);
+
+        marker.on('mouseover', function() {
+            marker.openPopup();
+        });
+
+        marker.on('mouseout', function() {
+            marker.closePopup();
+        });
+    }
+</script>
+</html>

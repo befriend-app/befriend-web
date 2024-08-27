@@ -18,7 +18,29 @@ header {
     .links {
         margin-left: auto;
         display: flex;
-        gap: 0 6vw;
+        gap: 0 60px;
         font-size: 17px;
+        align-items: center;
+
+        .waitlist {
+            background-color: $brand_color_a;
+            padding: 6px 16px;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid $lightgray;
+        }
+
+        a {
+            //text-align: center;
+            position: relative;
+        }
+
+        .in-person {
+            font-size: 13px;
+            position: absolute;
+            left: 0;
+            top: -16px;
+            width: 80px;
+        }
     }
 }
