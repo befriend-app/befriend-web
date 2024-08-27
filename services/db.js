@@ -20,7 +20,7 @@ module.exports = {
                 };
 
                 knex = require('knex')({
-                    client: 'mysql2',
+                    client: process.env.DB_CLIENT,
                     connection: connection
                 });
 
