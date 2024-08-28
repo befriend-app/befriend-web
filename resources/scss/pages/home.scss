@@ -1,7 +1,6 @@
 #page.home {
     .hero {
         height: calc(100% - #{$header_h});
-
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -9,8 +8,17 @@
 
     h1 {
         text-align: center;
+        font-size: 100px;
+        margin: auto;
 
-        font-size: 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px 0;
+
+        .line {
+            margin: auto;
+            width: fit-content;
+        }
     }
 
     .discord {

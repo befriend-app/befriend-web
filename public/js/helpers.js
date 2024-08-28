@@ -613,3 +613,213 @@ function parseParams(query) {
 
     return null;
 }
+
+function makeElHidden(el) {
+    //prevent element from being visible
+    el.style.visibility = 'hidden';
+
+    //prevent layout from moving
+    el.style.position = 'absolute';
+}
+
+function getFontSize(el) {
+    return getComputedStyle(el).fontSize;
+}
+
+function getTextDims(el, fontSize) {
+    if(!el.innerHTML) {
+        return;
+    }
+
+    let canvas = document.createElement('canvas');
+
+    makeElHidden(canvas);
+
+    document.body.appendChild(canvas);
+
+    let ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+    if(!fontSize) {
+        fontSize = getFontSize(el);
+    }
+
+    ctx.font = `${fontSize} ${webStyles.font_family}`;
+
+    ctx.textBaseline = "top";
+    ctx.fillText(el.innerHTML, 0, 0);
+
+    // Remove the surrounding transparent pixels
+    // result is an actual canvas element
+    let result = trim(canvas);
+
+    // Trim Canvas Pixels Method
+    // https://gist.github.com/remy/784508
+    function trim(c) {
+
+        let ctx = c.getContext('2d'),
+
+            // create a temporary canvas in which we will draw back the trimmed text
+            copy = document.createElement('canvas').getContext('2d'),
+
+            // Use the Canvas Image Data API, in order to get all the
+            // underlying pixels data of that canvas. This will basically
+            // return an array (Uint8ClampedArray) containing the data in the
+            // RGBA order. Every 4 items represent one pixel.
+            pixels = ctx.getImageData(0, 0, c.width, c.height),
+
+            // total pixels
+            l = pixels.data.length,
+
+            // main loop counter and pixels coordinates
+            i, x, y,
+
+            // an object that will store the area that isn't transparent
+            bound = { top: null, left: null, right: null, bottom: null };
+
+        // for every pixel in there
+        for (i = 0; i < l; i += 4) {
+
+            // if the alpha value isn't ZERO (transparent pixel)
+            if (pixels.data[i+3] !== 0) {
+
+                // find it's coordinates
+                x = (i / 4) % c.width;
+                y = ~~((i / 4) / c.width);
+
+                // store/update those coordinates
+                // inside our bounding box Object
+
+                if (bound.top === null) {
+                    bound.top = y;
+                }
+
+                if (bound.left === null) {
+                    bound.left = x;
+                } else if (x < bound.left) {
+                    bound.left = x;
+                }
+
+                if (bound.right === null) {
+                    bound.right = x;
+                } else if (bound.right < x) {
+                    bound.right = x;
+                }
+
+                if (bound.bottom === null) {
+                    bound.bottom = y;
+                } else if (bound.bottom < y) {
+                    bound.bottom = y;
+                }
+            }
+        }
+
+        // actual height and width of the text
+        // (the zone that is actually filled with pixels)
+        let trimHeight = bound.bottom - bound.top,
+            trimWidth = bound.right - bound.left,
+
+            // get the zone (trimWidth x trimHeight) as an ImageData
+            // (Uint8ClampedArray of pixels) from our canvas
+            trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+
+        // Draw back the ImageData into the canvas
+        copy.canvas.width = trimWidth;
+        copy.canvas.height = trimHeight;
+        copy.putImageData(trimmed, 0, 0);
+
+        // return the canvas element
+        return copy.canvas;
+    }
+
+    //remove from dom
+    canvas.parentNode.removeChild(canvas);
+
+    return {
+        width: result.width,
+        height: result.height
+    }
+}
+
+function sizeLines(els, lineHeightAdjustment) {
+    //find width of line el with shortest width
+    let shortest_text = null;
+
+    for(let i = 0; i < els.length; i++) {
+        let line_el = els[i];
+
+        // let box = line_el.getBoundingClientRect();
+        let dims = getTextDims(line_el);
+
+        if(!shortest_text || dims.width < shortest_text.width) {
+            shortest_text = {
+                el: line_el,
+                width: dims.width
+            };
+        }
+    }
+
+    function setFontSize(el) {
+        let inc = .1;
+        let smallest = 10;
+        let largest = 100;
+
+        let closest_size = null;
+
+        //loop through possible font sizes to find closest in width to line el found in shortest_text
+
+        for(let i = smallest; i < largest; i += inc) {
+            let fontSize = parseFloat(i.toFixed(1)) + 'px';
+            let new_el = el.cloneNode(true);
+
+            makeElHidden(new_el);
+
+            new_el.style.fontSize = fontSize;
+
+            //add to same parent as original el to inherit styles for consistency
+            el.parentNode.appendChild(new_el);
+
+            let new_box = new_el.getBoundingClientRect();
+
+            //calculate width diff between comparison el
+            let width_diff = Math.abs(new_box.width - shortest_text.width);
+
+            //set closest size if width diff is smallest based on font size
+            if(!closest_size || width_diff < closest_size.width_diff) {
+                closest_size = {
+                    width_diff: width_diff,
+                    font_size: fontSize
+                };
+            }
+
+            //remove test node from dom
+            new_el.parentNode.removeChild(new_el);
+        }
+
+        if(closest_size) {
+            //sets calculated font size to match width on line el
+            el.style.fontSize = closest_size.font_size;
+        }
+    }
+
+    //update font size
+    for(let i = 0; i < els.length; i++) {
+        let line_el = els[i];
+
+        if(line_el !== shortest_text.el) {
+            setFontSize(line_el);
+        }
+    }
+
+    //set line height based on actual height of text
+    let set_line_height = 0;
+
+    for(let i = 0; i < els.length; i++) {
+        let el = els[i];
+
+        let lineHeight = getTextDims(el);
+
+        if(lineHeight) {
+            el.style.lineHeight = `${lineHeight.height}px`;
+        }
+    }
+}

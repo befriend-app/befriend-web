@@ -1,8 +1,8 @@
 <div id="page" class="home">
     <div class="hero">
-        <h1>
-            <div class="line">Real friends,</div>
-            <div class="line">In-person</div>
+        <h1 class="size-lines">
+            <div class="line">UX for</div>
+            <div class="line">in-person friends</div>
         </h1>
 
 <!--        <a href="https://befriend.app/discord" target="_blank">-->
@@ -17,6 +17,11 @@
     </div>
 </div>
 
-<script>
+<%- contentFor('scripts')%>
 
+<script>
+    //make lines same width
+    let hero_lines = document.querySelector('.hero').getElementsByClassName('line');
+
+    sizeLines(hero_lines, -.2);
 </script>

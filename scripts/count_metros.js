@@ -7,9 +7,6 @@ let db = require('../services/db');
 (async function() {
     let conn = await db.conn();
 
-    //load metros
-    let metros = await conn('metros');
-
     //process prev waitlist users
     let waitlist_users = await conn('waitlist')
         .whereNull('metro_city');

@@ -12,12 +12,16 @@ html, body {
 }
 
 body {
-    font-family: 'Work Sans', sans-serif;
+    font-family: '#{$font_family}', sans-serif;
     font-optical-sizing: auto;
 
     height: 100vh !important;
     height: calc((var(--1dvh, 1vh) * 100)) !important;
     height: 100dvh !important;
+
+    &.loading {
+        visibility: hidden;
+    }
 }
 
 h1 {
