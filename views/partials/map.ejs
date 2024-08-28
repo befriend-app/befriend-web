@@ -38,6 +38,15 @@
             text-align: center;
         }
 
+        .popup .count {
+            font-size: 17px;
+        }
+
+        .popup .name {
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
         .leaflet-container { font-size: 1rem; }
     </style>
 
@@ -98,8 +107,10 @@
 
         let popup = L.popup({"maxWidth": "100%"});
 
+        let metro_name = metro.metro_name.split(', ')[0];
+
         let marker_html = $(`<div id="marker-${marker_int}" class="popup" style="width: 100.0%; height: 100.0%;">
-            <div class="name">${metro.metro_name}</div>
+            <div class="name">${metro_name}</div>
             <div class="count">${metro.metro_count}</div>
 </div>`)[0];
 
