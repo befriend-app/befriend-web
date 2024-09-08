@@ -98,6 +98,22 @@ function removeClassEl(name, el) {
     }
 }
 
+function elHasClass(el, cl) {
+    if(!el) {
+        return false;
+    }
+
+    if(typeof el === 'string') {
+        el = document.getElementById(el);
+    }
+
+    if(!el) {
+        return false;
+    }
+
+    return el.classList.contains(cl);
+}
+
 function timeoutAwait(t, f) {
     return new Promise((resolve, reject) => {
         setTimeout(function () {
@@ -161,21 +177,7 @@ function toggleClassEl(name, el) {
     }
 }
 
-function elHasClass(el, cl) {
-    if(!el) {
-        return false;
-    }
 
-    if(typeof el === 'string') {
-        el = document.getElementById(el);
-    }
-
-    if(!el) {
-        return false;
-    }
-
-    return el.classList.contains(cl);
-}
 
 function hasString(str) {
     return typeof str === 'string' && str.length > 0;
