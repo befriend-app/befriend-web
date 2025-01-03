@@ -133,13 +133,12 @@ header .mobile-menu .mobile-menu-content a svg {
 
 footer {
   padding: 20px 10vw;
-  background-color: #246a9d;
+  background-color: #cce3f4;
   display: flex;
   gap: 0 10vw;
   justify-content: center;
 }
 footer .copyright {
-  color: white;
   text-align: center;
 }
 footer .section {
@@ -414,10 +413,85 @@ footer .section .links .link {
   justify-content: center;
 }
 
+#page.non-profit {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 70px);
+  min-height: calc(100dvh - 70px);
+}
+#page.non-profit .hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#page.non-profit h1 {
+  font-size: 80px;
+}
+@media screen and (max-width: 501px) {
+  #page.non-profit h1 {
+    font-size: 60px;
+  }
+}
+@media screen and (max-width: 401px) {
+  #page.non-profit h1 {
+    font-size: 50px;
+  }
+}
+#page.non-profit .mission {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#page.non-profit .mission .tagline {
+  font-weight: 300;
+  font-size: 29px;
+}
+@media screen and (max-width: 501px) {
+  #page.non-profit .mission .tagline {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 401px) {
+  #page.non-profit .mission .tagline {
+    font-size: 18.5px;
+  }
+}
+#page.non-profit .ein {
+  font-size: 13px;
+  margin-top: 20px;
+  height: 30px;
+  display: flex;
+}
+#page.non-profit .ein .text {
+  background-color: #2d86c7;
+  color: white;
+  height: 30px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#page.non-profit .ein .number {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid #2d86c7;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+h1 {
+  font-size: 60px;
 }
 
 body {
@@ -451,6 +525,8 @@ h2 {
 
 .page-wrapper {
   height: fit-content;
+  min-height: calc(100vh - 70px);
+  min-height: calc(100dvh - 70px);
 }
 
 #page {

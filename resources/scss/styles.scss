@@ -4,11 +4,16 @@
 @import "partials/footer";
 
 @import "pages/home";
+@import "pages/non-profit";
 
 html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+}
+
+h1 {
+    font-size: 60px;
 }
 
 body {
@@ -44,6 +49,8 @@ h2 {
 
 .page-wrapper {
     height: fit-content;
+    min-height: calc(100vh - 70px);
+    min-height: calc(100dvh - 70px);
 }
 
 #page {

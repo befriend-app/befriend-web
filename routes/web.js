@@ -15,6 +15,18 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/non-profit', function (req, res, next) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await webController.getNonProfit(req, res);
+        } catch (e) {
+            return res.json("Error loading page", 400);
+        }
+
+        resolve();
+    });
+});
+
 router.post('/waitlist', function (req, res, next) {
     return new Promise(async (resolve, reject) => {
         try {

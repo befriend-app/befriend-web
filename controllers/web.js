@@ -25,6 +25,16 @@ module.exports = {
             resolve();
         });
     },
+    getNonProfit: function (req, res) {
+        return new Promise(async (resolve, reject) => {
+            res.render('pages/non-profit', {
+                title: `Befriend: Non-Profit.`,
+                description: `Non-profit app for in-person friends.`,
+            });
+
+            resolve();
+        });
+    },
     postWaitlist: function (req, res) {
         return new Promise(async (resolve, reject) => {
             let email = req.body.email;

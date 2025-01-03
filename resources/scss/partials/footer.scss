@@ -1,12 +1,12 @@
 footer {
     padding: 20px 10vw;
-    background-color: darken($brand_color_a, 10%);
+    background-color: lighten($brand_color_a, 40%);
     display: flex;
     gap: 0 10vw;
     justify-content: center;
 
     .copyright {
-        color: white;
+        //color: white;
         text-align: center;
     }
 
