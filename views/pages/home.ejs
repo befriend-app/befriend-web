@@ -139,26 +139,50 @@
 
         let videos_ended = 0;
 
-        urls.forEach(videoData => {
+        for(let videoData of urls) {
             const videoEl = document.createElement('video');
-            videoEl.src = videoData.url;
+
             videoEl.muted = true;
             videoEl.playsInline = true;
+            videoEl.preload = 'auto';
+            videoEl.autoplay = true;
+            videoEl.loop = true;
 
-            // Track loading of each video
+            videoEl.setAttribute('playsinline', '');
+            videoEl.setAttribute('webkit-playsinline', '');
+
+            const source = document.createElement('source');
+            source.src = videoData.url;
+            source.type = 'video/mp4';
+            videoEl.appendChild(source);
+
+            // Trying to force play on various events
+            const tryPlay = () => {
+                const playPromise = videoEl.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.error("Video play error:", error);
+                        // Try playing again after a short delay
+                        setTimeout(() => {
+                            videoEl.play().catch(e => console.error("Retry play error:", e));
+                        }, 100);
+                    });
+                }
+            };
+
             videoEl.addEventListener('loadeddata', () => {
                 loadedVideos++;
                 if (loadedVideos === urls.length) {
-                    // Both videos are loaded, start playing them
-                    videoElements.forEach(video => video.play());
+                    videoElements.forEach(video => tryPlay());
                 }
             });
 
-            videoEl.addEventListener("ended", (event) => {
+            videoEl.addEventListener("ended", () => {
                 videos_ended++;
 
                 if(videos_ended === urls.length) {
-                    for(let video of Array.from(videoElements)) {
+                    for(let video of videoElements) {
                         video.currentTime = 0;
                         video.play();
                     }
@@ -169,7 +193,7 @@
 
             videoElements.push(videoEl);
             els[videoData.type].appendChild(videoEl);
-        });
+        }
     }
 
     function signup() {
