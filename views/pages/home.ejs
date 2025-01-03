@@ -1,0 +1,249 @@
+<div id="page" class="home">
+    <div class="hero">
+        <div class="tagline"><span class="friends"><span class="real">Real</span> friends.</span><span class="time"><span class="real">Real</span>-time.</span></div>
+
+        <div class="coming-soon">
+            <div class="text">Arriving</div>
+            <div class="circle">20<span class="twenty-five">25</span></div>
+        </div>
+
+
+        <div class="signup-form" style="height: 114px;">
+            <div class="form">
+                <div class="error-message"></div>
+                <input type="email" placeholder="Your Email">
+                <div class="button"><span>Sign Up</span></div>
+            </div>
+
+            <div class="success-message"></div>
+        </div>
+
+        <div class="videos">
+            <div class="video send"></div>
+            <div class="video receive"></div>
+        </div>
+    </div>
+</div>
+
+<%- contentFor('scripts')%>
+
+<script>
+    let hero_el = document.querySelector('.hero');
+
+    function showTagline() {
+        let tagline_friends = document.querySelector('.tagline').querySelector('.friends');
+        let tagline_time = document.querySelector('.tagline').querySelector('.time');
+
+        return new Promise(async (resolve, reject) => {
+            setTimeout(function () {
+                addClassEl('show', tagline_friends);
+
+                setTimeout(function () {
+                    addClassEl('show', tagline_time);
+
+                    setTimeout(function () {
+                        resolve();
+                    }, 1500);
+                }, 1500);
+            }, 200);
+        });
+    }
+
+    function drop2025() {
+        return new Promise(async (resolve, reject) => {
+            const circle = hero_el.querySelector('.circle');
+            const startY = -window.innerHeight; // Start above viewport
+            const finalY = circle.getBoundingClientRect().top;
+            const duration = 2000; // Total animation duration in ms
+            const dropDuration = .3;
+            const bounceDuration = 1 - dropDuration;
+
+            let startTime = null;
+
+            function ease(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+
+            function animate(currentTime) {
+                if (!startTime) {
+                    startTime = currentTime;
+                }
+
+                let elapsed = currentTime - startTime;
+                let progress = Math.min(elapsed / duration, 1);
+
+                // Calculate current Y position
+                let currentY;
+
+                if (progress < dropDuration) { // During drop phase
+                    // Normalize progress for drop phase
+                    let dropProgress = progress / dropDuration;
+                    currentY = startY + (0 - startY) * ease(dropProgress);
+                } else { // During bounce phase
+                    // Normalize progress for bounce phase
+                    let bounceProgress = (progress - dropDuration) / bounceDuration;
+
+                    // Create bouncing effect using sine waves with decreasing amplitude
+                    let bounce = 0;
+                    const amplitudes = [40, 20, 10, 5, 2.5, 1.25];
+                    const frequencies = [1, 2, 4, 8, 16, 32];
+
+                    amplitudes.forEach((amplitude, i) => {
+                        bounce += amplitude *
+                            Math.sin(bounceProgress * Math.PI * frequencies[i]) *
+                            Math.pow(1 - bounceProgress, 1.5);
+                    });
+
+                    currentY = bounce;
+                }
+
+                // Apply the transform
+                circle.style.transform = `translateY(${currentY}px)`;
+
+                // Continue animation if not complete
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    resolve();
+                }
+            }
+
+            // Reset position and start animation
+            circle.style.transform = `translateY(${startY}px)`;
+
+            requestAnimationFrame(animate);
+        });
+    }
+
+    function setVideos() {
+        const els = {
+            send: hero_el.querySelector('.videos').querySelector('.send'),
+            receive: hero_el.querySelector('.videos').querySelector('.receive')
+        };
+
+        const urls = [{
+            url: 'https://befriend.s3.amazonaws.com/befriend-send.mp4',
+            type: 'send'
+        }, {
+            url: 'https://befriend.s3.amazonaws.com/befriend-receive.mp4',
+            type: 'receive'
+        }];
+
+        let loadedVideos = 0;
+        const videoElements = [];
+
+        let videos_ended = 0;
+
+        urls.forEach(videoData => {
+            const videoEl = document.createElement('video');
+            videoEl.src = videoData.url;
+            videoEl.muted = true;
+            videoEl.playsInline = true;
+
+            // Track loading of each video
+            videoEl.addEventListener('loadeddata', () => {
+                loadedVideos++;
+                if (loadedVideos === urls.length) {
+                    // Both videos are loaded, start playing them
+                    videoElements.forEach(video => video.play());
+                }
+            });
+
+            videoEl.addEventListener("ended", (event) => {
+                videos_ended++;
+
+                if(videos_ended === urls.length) {
+                    for(let video of Array.from(videoElements)) {
+                        video.currentTime = 0;
+                        video.play();
+                    }
+
+                    videos_ended = 0;
+                }
+            });
+
+            videoElements.push(videoEl);
+            els[videoData.type].appendChild(videoEl);
+        });
+    }
+
+    function signup() {
+        let button_el = hero_el.querySelector('.form').querySelector('.button');
+        let input_el = hero_el.querySelector('input');
+        let error_el = hero_el.querySelector('.error-message');
+        let success_el = hero_el.querySelector('.success-message');
+
+        button_el.addEventListener('click', async function (e) {
+            if(this._ip) {
+                return;
+            }
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            if(!input_el.value) {
+                return;
+            }
+
+            this._ip = true;
+
+            removeClassEl('show', error_el);
+            removeClassEl('show', success_el);
+
+            let email = input_el.value;
+
+            if(!isValidEmail(email)) {
+                addClassEl('show', error_el);
+                error_el.innerHTML = 'Invalid email';
+            } else {
+                try {
+                    await axios.post('/waitlist', {
+                        email
+                    });
+
+                    input_el.value = '';
+
+                    addClassEl('show', success_el);
+                    success_el.innerHTML = 'Thank you for signing up!';
+                } catch(e) {
+                    addClassEl('show', error_el);
+                    error_el.innerHTML = e?.response?.data?.msg;
+                    console.error(e);
+                }
+            }
+
+            this._ip = false;
+        });
+
+        input_el.addEventListener('keydown', function (e) {
+            if(!input_el.value) {
+                return;
+            }
+
+            removeClassEl('show', error_el);
+            removeClassEl('show', success_el);
+
+            if(e.key === 'Enter') {
+                fireClick(button_el);
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        requestAnimationFrame(async function () {
+            let arriving_el = hero_el.querySelector('.coming-soon').querySelector('.text');
+
+            await showTagline();
+
+            addClassEl('show', arriving_el);
+
+            setTimeout(async function () {
+                await drop2025();
+            }, 1000);
+        });
+    });
+
+    setVideos();
+
+    signup();
+</script>

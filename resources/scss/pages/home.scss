@@ -1,0 +1,258 @@
+#page.home {
+    .hero {
+        padding: 40px 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .videos {
+        $br: 20px;
+        display: flex;
+        gap: 30px 30px;
+        margin-top: 50px;
+        
+        @media screen and (max-width: 901px){
+            flex-direction: column;
+
+            video {
+                $mw: 90vw;
+                max-width: $mw;
+                max-height: $mw * (1198 / 552);
+            }
+        }
+
+        .video {
+            border-radius: $br;
+            overflow: hidden;
+            border: 2px solid $brand_color_a;
+
+            video {
+                border-radius: $br;
+                transform: scale(1.02);
+                height: calc(100vh - 100px);
+            }
+        }
+    }
+
+    .tagline {
+        margin-top: 25px;
+        font-size: 80px;
+        display: flex;
+        gap: 0 15px;
+        margin-bottom: 20px;
+
+        @media screen and (max-width: 901px){
+            font-size: 70px;
+        }
+
+        @media screen and (max-width: 801px){
+            font-size: 60px;
+        }
+
+        @media screen and (max-width: 701px){
+            font-size: 50px;
+        }
+
+        @media screen and (max-width: 601px){
+            flex-direction: column;
+            gap: 15px 0;
+            text-align: center;
+            margin-top: 0px;
+        }
+
+        .real {
+            color: $brand_color_a;
+            opacity: 1;
+        }
+
+        span {
+            opacity: 0;
+            transition: all 1000ms;
+
+            &.show {
+                opacity: 1;
+            }
+        }
+    }
+
+    .coming-soon {
+        $start_dim: 200px;
+        $mobile_dim: 140px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        font-weight: 300;
+        position: relative;
+        height: calc($start_dim + 2px);
+
+        @media screen and (max-width: 501px){
+            height: calc($mobile_dim + 2px);
+        }
+
+        .text {
+            font-size: 100px;
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 1000ms;
+            margin-right: calc($start_dim + 30px);
+
+            @media screen and (max-width: 601px){
+                font-size: 60px;
+                transform: translateY(0px);
+            }
+
+            @media screen and (max-width: 501px){
+                //font-size: 60px;
+                margin-right: calc($mobile_dim + 20px);
+                transform: translateY(-7px);
+
+                @media screen and (max-width: 401px){
+                    font-size: 40px;
+                    transform: translateY(0px);
+                }
+            }
+
+            &.show {
+                opacity: 1;
+            }
+        }
+
+        .circle {
+            $grow_scale_dim: 1.3;
+            $grow_transition_ms: 500ms;
+
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+
+            font-size: 70px;
+            border-radius: 50%;
+            width: $start_dim;
+            height: $start_dim;
+            background-color: $brand_color_b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            border: .5px solid $brand_color_a;
+            will-change: transform;
+            transition: all 200ms ease;
+            transform: translateY(-120vh);
+
+            .twenty-five {
+                display: inline-block;
+                transform: scale(1);
+                transform-origin: left center;
+                transition: all $grow_transition_ms;
+                will-change: transform;
+            }
+
+            @media screen and (max-width: 501px){
+                font-size: 50px;
+                width: $mobile_dim;
+                height: $mobile_dim;
+            }
+        }
+    }
+
+    .signup-form {
+        $br: 20px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        background: white;
+        height: initial !important;
+        margin-top: 30px;
+        text-align: center;
+        width: 360px;
+        max-width: 90vw;
+        position: relative;
+
+        .error-message, .success-message {
+            opacity: 0;
+            transition: all 300ms;
+            padding: 4px 12px;
+
+            &.show {
+                opacity: 1;
+            }
+        }
+
+        .error-message {
+            position: absolute;
+            color: white;
+            background-color: orangered;
+            font-size: 12px;
+        }
+
+        .success-message {
+            background-color: #00ad45;
+            color: white;
+            margin-top: 15px;
+            border-radius: 8px;
+            position: absolute;
+            bottom: -40px;
+            width: inherit;
+            padding-left: 0;
+            padding-right: 0;
+            z-index: 2;
+        }
+
+        .form {
+            //background-color: $brand_color_a;
+            /* margin-top: 30px; */
+            border-radius: $br;
+            width: 100%;
+            position: relative;
+            border: 1px solid $brand_color_a;
+            display: flex;
+            flex-direction: column;
+            background-color: $brand_color_a;
+            box-sizing: border-box;
+        }
+
+        input {
+            $padding_lr: 15px;
+            border: 0 solid;
+            line-height: 1.5;
+            padding: 10px $padding_lr;
+            text-align: center;
+            -webkit-transition: all 0.4s linear 0s;
+            transition: all 0.4s linear 0s;
+            float: left;
+            margin: auto auto 0;
+            width: calc(100% - $padding_lr * 2);
+            border-bottom: 1px solid darken($lightgray, 20%);
+            font-size: 15px;
+            font-weight: 300;
+            background-color: white;
+            border-top-left-radius: $br;
+            border-top-right-radius: $br;
+        }
+
+        .button {
+            border: 0 none;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: width 0.4s ease 0s, border-radius 0.4s;
+            transition: width 0.4s ease 0s, border-radius 0.4s;
+            position: relative;
+            //border-radius: 30px;
+            padding: 0;
+            border-bottom-left-radius: $br;
+            border-bottom-right-radius: $br;
+            //width: fit-content;
+            width: 100%;
+            height: 36px;
+            font-weight: 300;
+            font-size: 17px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

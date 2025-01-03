@@ -1,0 +1,60 @@
+@import "variables";
+@import "base";
+@import "partials/header";
+@import "partials/footer";
+
+@import "pages/home";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: '#{$font_family}', sans-serif;
+    font-optical-sizing: auto;
+
+    height: 100vh !important;
+    height: calc((var(--1dvh, 1vh) * 100)) !important;
+    height: 100dvh !important;
+
+    &.loading {
+        visibility: hidden;
+    }
+}
+
+h1 {
+    margin: 0;
+    font-weight: 400;
+}
+
+h2 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.body-wrapper {
+    height: 100%;
+}
+
+.page-wrapper {
+    height: fit-content;
+}
+
+#page {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+*:focus {
+    outline: none;
+}
