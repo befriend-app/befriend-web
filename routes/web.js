@@ -27,4 +27,16 @@ router.post('/waitlist', function (req, res, next) {
     });
 });
 
+router.get('/waitlist/confirm', function (req, res, next) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await webController.getConfirm(req, res);
+        } catch (e) {
+            return res.json("Error loading page", 400);
+        }
+
+        resolve();
+    });
+});
+
 module.exports = router;

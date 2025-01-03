@@ -74,6 +74,27 @@ footer .section .links .link {
   cursor: pointer;
 }
 
+#page.home .email-confirmed {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 300ms;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+#page.home .email-confirmed .container {
+  width: fit-content;
+  background: #808080;
+  color: white;
+  padding: 6px 18px;
+  border-radius: 6px;
+}
+#page.home .email-confirmed.show {
+  visibility: visible;
+  opacity: 1;
+}
 #page.home .hero {
   padding: 40px 0;
   display: flex;
@@ -347,6 +368,7 @@ h2 {
 
 #page {
   height: 100%;
+  position: relative;
 }
 
 a {

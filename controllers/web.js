@@ -131,4 +131,37 @@ module.exports = {
             resolve();
         });
     },
+    getConfirm: function (req, res) {
+        return new Promise(async (resolve, reject) => {
+            let user_code = req.query.code;
+
+            try {
+                let conn = await dbService.conn();
+
+                let confirm_check = await conn('waitlist')
+                    .where('user_code', user_code)
+                    .first();
+
+                if(confirm_check) {
+                    if(!confirm_check.is_confirmed) {
+                        await conn('waitlist')
+                            .where('id', confirm_check.id)
+                            .update({
+                                is_confirmed: 1,
+                                updated_at: getDateTimeStr()
+                            });
+
+                    }
+
+                    res.redirect('/?confirm_success=true');
+                }
+
+                res.redirect('/?');
+            } catch(e) {
+                console.error(e);
+            }
+
+            resolve();
+        });
+    },
 }
