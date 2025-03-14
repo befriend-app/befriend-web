@@ -172,6 +172,7 @@
             };
 
             videoEl.addEventListener('loadeddata', () => {
+                console.log("loadeddata");
                 loadedVideos++;
                 if (loadedVideos === urls.length) {
                     videoElements.forEach(video => tryPlay());

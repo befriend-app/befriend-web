@@ -5,7 +5,7 @@ header .row {
   display: flex;
   align-items: center;
   padding: 0 10vw;
-  background: #f8fcff;
+  background: rgb(247.9545454545, 252.2727272727, 254.5454545455);
   border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
@@ -133,7 +133,7 @@ header .mobile-menu .mobile-menu-content a svg {
 
 footer {
   padding: 20px 10vw;
-  background-color: #cce3f4;
+  background-color: rgb(204.4344262295, 227.0491803279, 243.5655737705);
   display: flex;
   gap: 0 10vw;
   justify-content: center;
@@ -411,6 +411,13 @@ footer .section .links .link {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#page.preview h1 {
+  text-align: center;
+}
+#page.preview .in-development {
+  font-size: 14px;
 }
 
 #page.non-profit {

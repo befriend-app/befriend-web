@@ -28,8 +28,18 @@ module.exports = {
     getNonProfit: function (req, res) {
         return new Promise(async (resolve, reject) => {
             res.render('pages/non-profit', {
-                title: `Befriend: Non-Profit.`,
-                description: `Non-profit app for in-person friends.`,
+                title: `Befriend: Non-Profit Friends App.`,
+                description: `The Non-profit app for in-person friends.`,
+            });
+
+            resolve();
+        });
+    },
+    getPreview: function (req, res) {
+        return new Promise(async (resolve, reject) => {
+            res.render('pages/preview', {
+                title: `Befriend Preview: Enjoy Life In-Person.`,
+                description: `Choose an activity. Send notifications. Meet in-person.`,
             });
 
             resolve();

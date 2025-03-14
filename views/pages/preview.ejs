@@ -1,0 +1,136 @@
+<link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<div id="page" class="preview">
+    <div class="hero">
+        <div class="in-development">In Development</div>
+    </div>
+
+    <div class="sections">
+        <div class="real-time section">
+            <h2>Real-Time</h2>
+            <div class="description">Send and receive activity notifications from new and existing friends.</div>
+
+            <div class="video-container">
+                <video controls muted="muted" playsinline -webkit-playsinline>
+                    <source src="https://befriend.s3.amazonaws.com/preview/real-time.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="activity-types section">
+            <h2>Activity Types</h2>
+            <div class="description">Enjoy over 12 main activity categories and nearly 300 subcategories.</div>
+
+            <div class="activity-types-container">
+<!--                <h2>Discover Activities</h2>-->
+
+                <!-- Swiper container -->
+                <div class="swiper activitySwiper">
+                    <div class="swiper-wrapper"></div>
+
+                    <!-- Add pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- Add navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- contentFor('scripts')%>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const activityTypes = [
+            { name: 'Meet', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/meet.png' },
+            { name: 'Eat', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/eat.png' },
+            { name: 'Eat', sub: 'by Food Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/eat-food-type.png' },
+            { name: 'Drink', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/drink.png' },
+            { name: 'Drink', sub: 'by Alcohol Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/drink-alcohol-type.png' },
+            { name: 'Walk', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/walk.png' },
+            { name: 'Exercise', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/exercise.png' },
+            { name: 'Watch', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/watch.png' },
+            { name: 'Fun', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/fun.png' },
+            { name: 'Dance', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/dance.png' },
+            { name: 'Attend', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/attend.png' },
+            { name: 'Attend', sub: 'by Sports Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/attend-sports-type.png' },
+            { name: 'Attend', sub: 'by Music Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/attend-music-type.png' },
+            { name: 'Relax', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/relax.png' },
+            { name: 'Discover', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/discover.png' },
+            // { name: 'Travel', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/travel.png' },
+            { name: 'Shop', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/shop.png' },
+            { name: 'Kids', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/kids.png' }
+        ];
+
+        const swiperWrapper = document.querySelector('.activitySwiper .swiper-wrapper');
+
+        // Generate slides dynamically
+        activityTypes.forEach(activity => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+
+            let sub_name = '';
+
+            if(activity.sub) {
+                sub_name = `<div class="activity-sub-name">${activity.sub}</div>`;
+            }
+
+            slide.innerHTML = `
+              <div class="activity-card" data-activity="${activity.name.toLowerCase()}">
+                <div class="activity-icon">
+                  <img src="${activity.icon}" alt="${activity.name}" />
+                </div>
+                <div class="name-container">
+                    <div class="activity-name">${activity.name}</div>
+                    ${sub_name}
+                </div>
+              </div>
+            `;
+
+            swiperWrapper.appendChild(slide);
+        });
+
+        // Initialize Swiper
+        const swiper = new Swiper('.activitySwiper', {
+            slidesPerView: 1.3,
+            spaceBetween: 10,
+            centeredSlides: false,
+            grabCursor: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                600: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 15
+                },
+                1024: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 20
+                },
+            }
+        });
+
+        document.querySelectorAll('.activity-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const activityType = this.getAttribute('data-activity');
+                console.log(`Selected activity: ${activityType}`);
+            });
+        });
+    });
+</script>
