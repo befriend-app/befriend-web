@@ -17,7 +17,7 @@
             <div class="description">Send and receive activity notifications from new and existing friends.</div>
 
             <div class="video-container">
-                <video controls muted="muted" playsinline -webkit-playsinline>
+                <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/real-time.jpg">
                     <source src="https://befriend.s3.amazonaws.com/preview/real-time.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -29,8 +29,27 @@
             <div class="description">Enjoy over 12 main activity categories and nearly 300 subcategories.</div>
 
             <div class="activity-types-container">
-<!--                <h2>Discover Activities</h2>-->
+                <!-- Swiper container -->
+                <div class="swiper activitySwiper">
+                    <div class="swiper-wrapper"></div>
 
+                    <!-- Add pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- Add navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters section">
+            <h2>Filters</h2>
+            <div class="description">Combine 20+ state-of-the-art filters to find your best friends in record time.</div>
+
+            <div class="info">Bi-directional filter system ensures notifications are welcome on both sides.</div>
+
+            <div class="filters-container">
                 <!-- Swiper container -->
                 <div class="swiper activitySwiper">
                     <div class="swiper-wrapper"></div>
@@ -51,6 +70,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Activity Types Data
         const activityTypes = [
             { name: 'Meet', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/meet.png' },
             { name: 'Eat', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/eat.png' },
@@ -72,47 +92,103 @@
             { name: 'Kids', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/kids.png' }
         ];
 
-        const swiperWrapper = document.querySelector('.activitySwiper .swiper-wrapper');
+        // Filters Data with descriptions
+        const filters = [
+            { name: 'Availability', description: `Choose when to receive notifications`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/availability.png' },
+            { name: 'Activity Types', description: 'Filter by preferred activities', icon: 'https://befriend.s3.amazonaws.com/preview/filters/activity-types.png' },
+            { name: 'Modes', description: `Meet fellow solo travelers, couples, or families`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/modes.png' },
+            { name: 'Networks', description: `Connect with friends in-person across the entire Befriend network`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/networks.png' },
+            { name: 'Reviews', description: 'Stay safe, find high-quality friends, and meet new people with confidence', icon: 'https://befriend.s3.amazonaws.com/preview/filters/reviews.png' },
+            { name: 'Verifications', description: 'Connect with verified persons', icon: 'https://befriend.s3.amazonaws.com/preview/filters/verifications.png' },
+            { name: 'Distance', description: 'Discover friends nearby and in neighboring cities', icon: 'https://befriend.s3.amazonaws.com/preview/filters/distance.png' },
+            { name: 'Age', description: 'Find friends in your age range', icon: 'https://befriend.s3.amazonaws.com/preview/filters/age.png' },
+            { name: 'Genders', description: 'Filter by gender preference', icon: 'https://befriend.s3.amazonaws.com/preview/filters/genders.png' },
+            { name: 'Movies', description: 'Find friends with similar movie tastes', icon: 'https://befriend.s3.amazonaws.com/preview/filters/movies.png' },
+            { name: 'TV Shows', description: 'Connect through favorite TV shows', icon: 'https://befriend.s3.amazonaws.com/preview/filters/tv-shows.png' },
+            { name: 'Sports', description: 'Find friends who are as passionate about the same teams and leagues as you', icon: 'https://befriend.s3.amazonaws.com/preview/filters/sports.png' },
+            { name: 'Music', description: 'Connect through shared music interests', icon: 'https://befriend.s3.amazonaws.com/preview/filters/music.png' },
+            { name: 'Instruments', description: 'Connect with fellow musicians', icon: 'https://befriend.s3.amazonaws.com/preview/filters/instruments.png' },
+            { name: 'Schools', description: 'Find alumni from your middle school, high school, or university', icon: 'https://befriend.s3.amazonaws.com/preview/filters/schools.png' },
+            { name: 'Work', description: 'Connect with professionals by industry and role', icon: 'https://befriend.s3.amazonaws.com/preview/filters/work.png' },
+            { name: 'Life Stages', description: 'Connect with people in a similar life stage', icon: 'https://befriend.s3.amazonaws.com/preview/filters/life-stages.png' },
+            { name: 'Relationships', description: 'Find friends with similar relationship status', icon: 'https://befriend.s3.amazonaws.com/preview/filters/relationships.png' },
+            { name: 'Languages', description: 'Find friends who speak your language', icon: 'https://befriend.s3.amazonaws.com/preview/filters/languages.png' },
+            { name: 'Politics', description: 'Filter by political views', icon: 'https://befriend.s3.amazonaws.com/preview/filters/politics.png' },
+            { name: 'Religions', description: 'Connect with people of similar faith', icon: 'https://befriend.s3.amazonaws.com/preview/filters/religions.png' },
+            { name: 'Drinking', description: 'Find friends with similar drinking habits', icon: 'https://befriend.s3.amazonaws.com/preview/filters/drinking.png' },
+            { name: 'Smoking', description: 'Filter by smoking preferences', icon: 'https://befriend.s3.amazonaws.com/preview/filters/smoking.png' },
+        ];
 
-        // Generate slides dynamically
+        // Populate Activity Types Swiper
+        const activitySwiperWrapper = document.querySelector('.activity-types .swiper-wrapper');
+
+        // Generate activity type slides
         activityTypes.forEach(activity => {
             const slide = document.createElement('div');
             slide.className = 'swiper-slide';
 
             let sub_name = '';
-
             if(activity.sub) {
                 sub_name = `<div class="activity-sub-name">${activity.sub}</div>`;
             }
 
             slide.innerHTML = `
-              <div class="activity-card" data-activity="${activity.name.toLowerCase()}">
-                <div class="activity-icon">
-                  <img src="${activity.icon}" alt="${activity.name}" />
-                </div>
-                <div class="name-container">
-                    <div class="activity-name">${activity.name}</div>
-                    ${sub_name}
-                </div>
-              </div>
-            `;
+          <div class="activity-card" data-activity="${activity.name.toLowerCase()}">
+            <div class="activity-icon">
+              <img src="${activity.icon}" alt="${activity.name}" loading="lazy" />
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="name-container">
+                <div class="activity-name">${activity.name}</div>
+                ${sub_name}
+            </div>
+          </div>
+        `;
 
-            swiperWrapper.appendChild(slide);
+            activitySwiperWrapper.appendChild(slide);
         });
 
-        // Initialize Swiper
-        const swiper = new Swiper('.activitySwiper', {
+        // Populate Filters Swiper
+        const filterSwiperWrapper = document.querySelector('.filters .swiper-wrapper');
+
+        // Generate filter slides
+        filters.forEach(filter => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+
+            slide.innerHTML = `
+          <div class="filter-card" data-filter="${filter.name.toLowerCase().replace(/\s+/g, '-')}">
+            <div class="filter-icon">
+              <img src="${filter.icon}" alt="${filter.name}" loading="lazy" />
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="name-container">
+                <div class="filter-name">${filter.name}</div>
+                <div class="filter-description">${filter.description}</div>
+            </div>
+          </div>
+        `;
+
+            filterSwiperWrapper.appendChild(slide);
+        });
+
+        // Initialize Activity Types Swiper
+        const activitySwiper = new Swiper('.activity-types .swiper', {
             slidesPerView: 1.3,
             spaceBetween: 10,
-            centeredSlides: false,
             grabCursor: true,
+            lazy: {
+                loadPrevNext: true,
+                loadPrevNextAmount: 2,
+                loadOnTransitionStart: true,
+            },
             pagination: {
-                el: '.swiper-pagination',
+                el: '.activity-types .swiper-pagination',
                 clickable: true,
             },
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+                nextEl: '.activity-types .swiper-button-next',
+                prevEl: '.activity-types .swiper-button-prev',
             },
             breakpoints: {
                 600: {
@@ -123,6 +199,52 @@
                     slidesPerView: 3.5,
                     spaceBetween: 20
                 },
+                1300: {
+                    slidesPerView: 4,
+                    spaceBetween: 20
+                },
+                1600: {
+                    slidesPerView: 4.5,
+                    spaceBetween: 20
+                },
+            }
+        });
+
+        // Initialize Filters Swiper
+        const filterSwiper = new Swiper('.filters .swiper', {
+            slidesPerView: 1.3,
+            spaceBetween: 20,
+            grabCursor: true,
+            lazy: {
+                loadPrevNext: true,
+                loadPrevNextAmount: 2,
+                loadOnTransitionStart: true,
+            },
+            pagination: {
+                el: '.filters .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.filters .swiper-button-next',
+                prevEl: '.filters .swiper-button-prev',
+            },
+            breakpoints: {
+                600: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 30
+                },
+                1300: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
+                },
+                1600: {
+                    slidesPerView: 4.5,
+                    spaceBetween: 30
+                },
             }
         });
 
@@ -130,6 +252,13 @@
             card.addEventListener('click', function() {
                 const activityType = this.getAttribute('data-activity');
                 console.log(`Selected activity: ${activityType}`);
+            });
+        });
+
+        document.querySelectorAll('.filter-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const filterType = this.getAttribute('data-filter');
+                console.log(`Selected filter: ${filterType}`);
             });
         });
     });
