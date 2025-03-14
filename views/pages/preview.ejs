@@ -70,6 +70,14 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const preloadNext = (n, swiper) => {
+            swiper
+                .slides
+                .slice(swiper.activeIndex, swiper.activeIndex + n + 1)
+                .map(slide => slide.querySelector('img'))
+                .forEach(s => s.setAttribute('loading', 'eager'));
+        };
+
         // Activity Types Data
         const activityTypes = [
             { name: 'Meet', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/meet.png' },
@@ -177,11 +185,7 @@
             slidesPerView: 1.3,
             spaceBetween: 10,
             grabCursor: true,
-            lazy: {
-                loadPrevNext: true,
-                loadPrevNextAmount: 2,
-                loadOnTransitionStart: true,
-            },
+            lazyPreloadPrevNext: 2,
             pagination: {
                 el: '.activity-types .swiper-pagination',
                 clickable: true,
@@ -215,11 +219,7 @@
             slidesPerView: 1.3,
             spaceBetween: 20,
             grabCursor: true,
-            lazy: {
-                loadPrevNext: true,
-                loadPrevNextAmount: 2,
-                loadOnTransitionStart: true,
-            },
+            lazyPreloadPrevNext: 2,
             pagination: {
                 el: '.filters .swiper-pagination',
                 clickable: true,
@@ -247,6 +247,12 @@
                 },
             }
         });
+
+        preloadNext(2, activitySwiper);
+        preloadNext(2, filterSwiper);
+
+        activitySwiper.on('slideChange', () => preloadNext(2, activitySwiper));
+        filterSwiper.on('slideChange', () => preloadNext(2, filterSwiper));
 
         document.querySelectorAll('.activity-card').forEach(card => {
             card.addEventListener('click', function() {
