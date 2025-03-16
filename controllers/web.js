@@ -184,4 +184,36 @@ module.exports = {
             resolve();
         });
     },
+    getUnsubscribe: function (req, res) {
+        return new Promise(async (resolve, reject) => {
+            let user_code = req.params.user_code;
+
+            try {
+                let conn = await dbService.conn();
+
+                let qry = await conn('waitlist')
+                    .where('user_code', user_code)
+                    .first();
+
+                if(!qry) {
+                    res.json('Invalid user code provided');
+                } else {
+                    await conn('waitlist')
+                        .where('user_code', user_code)
+                        .update({
+                            unsubscribed: true,
+                            updated_at: getDateTimeStr()
+                        });
+
+                    res.json(`${qry.email}: unsubscribed successfully`);
+                }
+
+                resolve();
+            } catch(e) {
+                console.error(e);
+            }
+
+            resolve();
+        });
+    }
 }

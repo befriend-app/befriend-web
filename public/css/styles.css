@@ -413,6 +413,9 @@ footer .section .links .link {
   justify-content: center;
 }
 
+#page.preview {
+  padding-bottom: 40px;
+}
 #page.preview .hero {
   text-align: center;
   padding: 20px 0;
