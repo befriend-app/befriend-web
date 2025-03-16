@@ -12,7 +12,7 @@ exports.up = function(knex) {
         .createTable('email_sends', function(table) {
             table.increments('id').primary();
             table.integer('campaign_id').unsigned().references('id').inTable('email_campaigns');
-            table.integer('user_id').unsigned().references('id').inTable('waitlist');
+            table.bigInteger('user_id').unsigned().references('id').inTable('waitlist');
             table.integer('created');
             table.integer('updated');
         })
