@@ -7,12 +7,12 @@
 
 
 <div id="page" class="preview">
-    <div class="in-development">In Development</div>
+    <h1>Features Preview</h1>
 
     <div class="sections">
-        <div class="real-time section video-section">
+        <div id="real-time" class="real-time section video-section">
             <h2>Real-Time</h2>
-            <div class="description">Send and receive activity notifications from new and existing friends.</div>
+            <div class="description">Send and receive activity notifications from new and existing friends in real-time.</div>
 
             <div class="video-container">
                 <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/real-time.jpg">
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="activity-types section">
+        <div id="activity-types" class="activity-types section">
             <h2>Activity Types</h2>
             <div class="description">Enjoy over 12 main activity categories and nearly 300 subcategories.</div>
 
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="filters section">
+        <div id="filters" class="filters section">
             <h2>Filters</h2>
             <div class="description">Combine 20+ state-of-the-art filters to find your best friends in record time.</div>
 
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <div class="multi-person section video-section">
+        <div id="multi-person" class="multi-person section video-section">
             <h2>Multi-Person</h2>
             <div class="description">Invite more than one person for an activity.</div>
 
@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <div class="kids-mode section video-section">
+        <div id="kids-mode" class="kids-mode section video-section">
             <h2>Kids Mode</h2>
 
             <div class="description">Designed for parents with children, make new friends during kid-friendly activities.</div>
@@ -289,6 +289,26 @@
                 const filterType = this.getAttribute('data-filter');
                 console.log(`Selected filter: ${filterType}`);
             });
+        });
+    });
+
+    const previewLinks = document.querySelectorAll('.links a[href^="/preview#"]');
+
+    previewLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href').split('#')[1];
+            const targetSection = document.getElementById(targetId);
+
+            if (window.location.pathname.includes('/preview') && targetSection) {
+                e.preventDefault();
+
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                history.pushState(null, null, `#${targetId}`);
+            }
         });
     });
 </script>

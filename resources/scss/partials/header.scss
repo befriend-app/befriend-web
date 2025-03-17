@@ -1,17 +1,42 @@
+$preheader_h: 30px;
+
+.pre-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $brand_color_a;
+    color: white;
+    //font-style: italic;
+    text-align: center;
+    height: $preheader_h;
+    font-weight: 500;
+    font-size: 13px;
+}
+
 header {
+    $padding_1: 10vw;
+    $padding_2: 7.5vw;
+    $padding_mobile: 5vw;
+    $break_1: 1151px;
+    $mobile_break: 901px;
+
     .row {
         border-bottom: 1px solid $lightgray;
         z-index: 1001;
         height: $header_h;
         display: flex;
         align-items: center;
-        padding: 0 10vw;
+        padding-left: $padding_1;
         background: lighten($brand_color_b, 5%);
         border-bottom: 1px solid $lightgray;
         position: relative;
 
-        @media screen and (max-width: 768px) {
-            padding: 0 5vw;
+        @media screen and (max-width: $break_1) {
+            padding-left: $padding_2;
+        }
+
+        @media screen and (max-width: $mobile_break) {
+            padding: 0 $padding_mobile;
         }
     }
 
@@ -42,7 +67,7 @@ header {
         padding: 0;
         z-index: 1001;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $mobile_break) {
             display: flex;
         }
 
@@ -70,13 +95,27 @@ header {
     }
 
     .links {
-        margin-left: auto;
+        $padding_lr_1: 5%;
+        $padding_lr_2: 30px;
+        margin: auto;
         display: flex;
-        gap: 0 60px;
-        font-size: 17px;
+        justify-content: space-evenly;
+        font-size: clamp(16px, 1.2vw, 17px);
         align-items: center;
+        width: calc(100vw - 1 * #{$padding_1} - 2 * #{$padding_lr_1});
+        padding: 0 $padding_lr_1;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $break_1) {
+            padding: 0;
+            width: calc(100vw - 1 * #{$padding_2});
+        }
+
+        //@media screen and (max-width: 1001px) {
+        //    padding: 0 20px;
+        //    width: calc(100vw - 1 * #{$padding_1} - 2 * #{$padding_lr});
+        //}
+
+        @media screen and (max-width: $mobile_break) {
             display: none;
         }
 
@@ -90,6 +129,7 @@ header {
 
         a {
             position: relative;
+            white-space: nowrap;
 
             svg {
                 height: 13px;
@@ -111,7 +151,7 @@ header {
     .mobile-menu {
         display: none;
         position: fixed;
-        top: 0;
+        top: $preheader_h;
         left: 0;
         right: 0;
         bottom: 0;
@@ -121,7 +161,7 @@ header {
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $mobile_break) {
             display: block;
         }
 
