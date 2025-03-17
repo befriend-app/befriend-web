@@ -151,14 +151,21 @@
             }
         }
 
-        &.kids-mode {
+        &.kids-mode, &.cross-network {
             video {
                 $r: 1156 / 1080;
                 max-height: calc(90vw / #{$r});
             }
         }
+    }
 
-
+    .third-party-networks {
+        .description {
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
     }
 
     .filters {

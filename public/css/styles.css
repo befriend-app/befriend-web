@@ -557,8 +557,14 @@ footer .section .links .link {
 #page.preview .video-section.multi-person video {
   max-height: calc(90vw / 1.6074074074);
 }
-#page.preview .video-section.kids-mode video {
+#page.preview .video-section.kids-mode video, #page.preview .video-section.cross-network video {
   max-height: calc(90vw / 1.0703703704);
+}
+#page.preview .third-party-networks .description {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 #page.preview .filters .info {
   font-size: 15px;
