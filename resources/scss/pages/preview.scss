@@ -151,7 +151,7 @@
             }
         }
 
-        &.kids-mode, &.third-party-networks {
+        &.kids-mode, &.networks {
             video {
                 $r: 1156 / 1080;
                 max-height: calc(90vw / #{$r});
@@ -159,7 +159,7 @@
         }
     }
 
-    .third-party-networks {
+    .networks {
         .description {
             font-size: 16px;
             display: flex;
