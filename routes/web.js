@@ -76,23 +76,4 @@ router.get('/email/unsubscribe/:user_code', function (req, res, next) {
     });
 });
 
-router.get('/test', function (req, res, next) {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let view_path = joinPaths(getRepoRoot(), `tmp/email/views/preview.ejs`);
-
-            let html = await ejs.renderFile(view_path, {
-                user_code: 123,
-            });
-
-            res.send(html);
-        } catch (e) {
-            console.error(e);
-        }
-
-        resolve();
-    });
-});
-
-
 module.exports = router;
