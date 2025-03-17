@@ -38,7 +38,7 @@ module.exports = {
     getPreview: function (req, res) {
         return new Promise(async (resolve, reject) => {
             res.render('pages/preview', {
-                title: `Befriend: Preview the Future of Happiness.`,
+                title: `Preview Befriend: The Future of Happiness.`,
                 description: `Preview Befriend: Safe, real-time in-person activities with 20+ state-of-the-art filters.`,
             });
 

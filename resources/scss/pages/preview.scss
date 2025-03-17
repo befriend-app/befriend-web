@@ -2,11 +2,6 @@
     $activity_image_h: 600px;
     padding-bottom: 40px;
 
-    .hero {
-        text-align: center;
-        padding: 20px 0;
-    }
-
     h1 {
         font-size: 40px;
     }
@@ -14,13 +9,14 @@
     .in-development {
         font-size: 18px;
         font-style: italic;
+        text-align: center;
+        padding: 25px 0;
     }
 
     .sections {
         display: flex;
         flex-direction: column;
         gap: 30px 20px;
-        margin-top: 10px;
     }
 
     .section {
@@ -130,7 +126,7 @@
         margin-top: initial !important;
     }
 
-    .real-time {
+    .video-section {
         .video-container {
             margin-top: 20px;
 

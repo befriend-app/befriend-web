@@ -416,22 +416,19 @@ footer .section .links .link {
 #page.preview {
   padding-bottom: 40px;
 }
-#page.preview .hero {
-  text-align: center;
-  padding: 20px 0;
-}
 #page.preview h1 {
   font-size: 40px;
 }
 #page.preview .in-development {
   font-size: 18px;
   font-style: italic;
+  text-align: center;
+  padding: 25px 0;
 }
 #page.preview .sections {
   display: flex;
   flex-direction: column;
   gap: 30px 20px;
-  margin-top: 10px;
 }
 #page.preview .section h2 {
   text-align: center;
@@ -519,12 +516,12 @@ footer .section .links .link {
   height: 100% !important;
   margin-top: initial !important;
 }
-#page.preview .real-time .video-container {
+#page.preview .video-section .video-container {
   margin-top: 20px;
   display: flex;
   justify-content: center;
 }
-#page.preview .real-time .video-container video {
+#page.preview .video-section .video-container video {
   max-width: 90vw;
   max-height: calc(90vw / 1.21);
   height: 600px;

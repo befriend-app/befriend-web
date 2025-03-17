@@ -7,12 +7,10 @@
 
 
 <div id="page" class="preview">
-    <div class="hero">
-        <div class="in-development">In Development</div>
-    </div>
+    <div class="in-development">In Development</div>
 
     <div class="sections">
-        <div class="real-time section">
+        <div class="real-time section video-section">
             <h2>Real-Time</h2>
             <div class="description">Send and receive activity notifications from new and existing friends.</div>
 
@@ -64,13 +62,26 @@
             </div>
         </div>
 
-        <div class="real-time section">
+        <div class="multi-person section video-section">
             <h2>Multi-Person</h2>
             <div class="description">Invite more than one person for an activity.</div>
 
             <div class="video-container">
                 <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/multi-person.jpg">
                     <source src="https://befriend.s3.amazonaws.com/preview/multi-person.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="kids-mode section video-section">
+            <h2>Kids Mode</h2>
+
+            <div class="description">Designed for parents with children, make new friends during kid-friendly activities.</div>
+
+            <div class="video-container">
+                <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/kids-mode.jpg">
+                    <source src="https://befriend.s3.amazonaws.com/preview/kids-mode.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -117,7 +128,7 @@
             { name: 'Availability', description: `Choose when to receive notifications`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/availability.png' },
             { name: 'Activity Types', description: 'Filter by preferred activities', icon: 'https://befriend.s3.amazonaws.com/preview/filters/activity-types.png' },
             { name: 'Modes', description: `Meet fellow solo travelers, couples, or families`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/modes.png' },
-            { name: 'Networks', description: `Connect with friends in-person across the entire Befriend network`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/networks.png' },
+            { name: 'Networks', description: `Connect with in-person friends across the entire Befriend network`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/networks.png' },
             { name: 'Reviews', description: 'Stay safe, find high-quality friends, and meet new people with confidence', icon: 'https://befriend.s3.amazonaws.com/preview/filters/reviews.png' },
             { name: 'Verifications', description: 'Connect with verified persons', icon: 'https://befriend.s3.amazonaws.com/preview/filters/verifications.png' },
             { name: 'Distance', description: 'Discover friends nearby and in neighboring cities', icon: 'https://befriend.s3.amazonaws.com/preview/filters/distance.png' },
