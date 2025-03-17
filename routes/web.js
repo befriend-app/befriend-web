@@ -76,5 +76,4 @@ router.get('/email/unsubscribe/:user_code', function (req, res, next) {
     });
 });
 
-it c
 module.exports = router;
