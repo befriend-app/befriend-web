@@ -557,7 +557,7 @@ footer .section .links .link {
 #page.preview .video-section.multi-person video {
   max-height: calc(90vw / 1.6074074074);
 }
-#page.preview .video-section.kids-mode video, #page.preview .video-section.cross-network video {
+#page.preview .video-section.kids-mode video, #page.preview .video-section.third-party-networks video {
   max-height: calc(90vw / 1.0703703704);
 }
 #page.preview .third-party-networks .description {
