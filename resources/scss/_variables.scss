@@ -1,6 +1,17 @@
 $header_h: 70px;
+$preheader_h: 40px;
 
 $font_family: Open Sans;
 
 $brand_color_a: #2d86c7;
 $brand_color_b: #e0f3fd;
+$brand_color_c: #FFCC80;
+$brand_color_d: #ffb198;
+
+$white: #ffffff;
+$light-gray: #f5f5f5;
+$medium-gray: #e0e0e0;
+$dark-gray: #333333;
+$black: #000000;
+
+$total_header_h: $header_h + $preheader_h;
