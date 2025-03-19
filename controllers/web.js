@@ -17,8 +17,8 @@ module.exports = {
             }
 
             res.render('pages/home', {
-                title: `Befriend: Arriving 2025.`,
-                description: `Real friends. Real-time`,
+                title: `Befriend: The Future of Happiness.`,
+                description: `Safe, real-time in-person activities with 20+ state-of-the-art filters.`,
                 count: count
             });
 
@@ -30,16 +30,6 @@ module.exports = {
             res.render('pages/non-profit', {
                 title: `Befriend: Non-Profit Friends App.`,
                 description: `The Non-profit app for in-person friends.`,
-            });
-
-            resolve();
-        });
-    },
-    getPreview: function (req, res) {
-        return new Promise(async (resolve, reject) => {
-            res.render('pages/preview', {
-                title: `Preview Befriend: The Future of Happiness.`,
-                description: `Preview Befriend: Safe, real-time in-person activities with 20+ state-of-the-art filters.`,
             });
 
             resolve();

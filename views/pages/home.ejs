@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <div id="page" class="home">
     <div class="email-confirmed">
         <div class="container">
@@ -6,7 +9,7 @@
     </div>
 
     <div class="hero">
-        <div class="tagline"><span class="friends"><span class="real">Real</span> friends.</span><span class="time"><span class="real">Real</span>-time.</span></div>
+        <div class="tagline"><span class="friends"><span class="real">Real</span> Friends.</span><span class="time"><span class="real">Real</span>-Time.</span></div>
 
         <div class="coming-soon">
             <div class="text">Arriving</div>
@@ -22,10 +25,108 @@
 
             <div class="success-message"></div>
         </div>
+    </div>
 
-        <div class="videos">
-            <div class="video send"></div>
-            <div class="video receive"></div>
+    <div class="preview">
+        <div class="sections">
+            <div id="preview-real-time" class="real-time section video-section">
+                <h2>Real-Time</h2>
+                <div class="description">Send and receive activity notifications from new and existing friends in real-time.</div>
+
+                <div class="video-container">
+                    <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/real-time.jpg">
+                        <source src="https://befriend.s3.amazonaws.com/preview/real-time.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div id="preview-activity-types" class="activity-types section">
+                <h2>Activity Types</h2>
+                <div class="description">Enjoy over 12 main activity categories and nearly 300 subcategories.</div>
+
+                <div class="activity-types-container">
+                    <!-- Swiper container -->
+                    <div class="swiper activitySwiper">
+                        <div class="swiper-wrapper"></div>
+
+                        <!-- Add pagination -->
+                        <div class="swiper-pagination"></div>
+
+                        <!-- Add navigation buttons -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="preview-filters" class="filters section">
+                <h2>Filters</h2>
+                <div class="description">Combine 20+ state-of-the-art filters to find your best friends in record time.</div>
+
+                <div class="info">Bi-directional filter system ensures notifications are welcome on both sides.</div>
+
+                <div class="filters-container">
+                    <!-- Swiper container -->
+                    <div class="swiper activitySwiper">
+                        <div class="swiper-wrapper"></div>
+
+                        <!-- Add pagination -->
+                        <div class="swiper-pagination"></div>
+
+                        <!-- Add navigation buttons -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="preview-kids-mode" class="kids-mode section video-section">
+                <h2>Kids Mode</h2>
+
+                <div class="description">Befriend is designed for parents to connect with other families during kid-friendly activities, helping both adults and children make new friends easily.</div>
+
+                <div class="video-container">
+                    <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/kids-mode.jpg">
+                        <source src="https://befriend.s3.amazonaws.com/preview/kids-mode.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div id="preview-multi-person" class="multi-person section video-section">
+                <h2>Multi-Person</h2>
+                <div class="description">Invite more than one person for an activity.</div>
+
+                <div class="video-container">
+                    <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/multi-person.jpg">
+                        <source src="https://befriend.s3.amazonaws.com/preview/multi-person.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div id="preview-networks" class="networks section video-section">
+                <h2>3rd-Party Networks</h2>
+
+                <div class="description">
+                    <div>Our open-source platform empowers brands and developers to create their own in-person friend networks.</div>
+                    <div>When LIVE, users across all networks can connect with each other, significantly expanding potential matches.</div>
+                    <div>By uniting these networks, we're building a global community where one billion people can finally create authentic friendships through technology.</div>
+                    <div>Together, we can increase the consciousness of happiness on Earth while creating a world with less depression, less isolation, and more real-time, meaningful human connections in person.</div>
+                </div>
+
+                <div class="video-container">
+                    <video controls muted="muted" playsinline -webkit-playsinline poster="https://befriend.s3.amazonaws.com/preview/3rd-party-networks.jpg">
+                        <source src="https://befriend.s3.amazonaws.com/preview/3rd-party-networks.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <div class="signup">
+            <div class="button">Sign Up</div>
         </div>
     </div>
 </div>
@@ -34,168 +135,6 @@
 
 <script>
     let hero_el = document.querySelector('.hero');
-
-    function showTagline() {
-        let tagline_friends = document.querySelector('.tagline').querySelector('.friends');
-        let tagline_time = document.querySelector('.tagline').querySelector('.time');
-
-        return new Promise(async (resolve, reject) => {
-            setTimeout(function () {
-                addClassEl('show', tagline_friends);
-
-                setTimeout(function () {
-                    addClassEl('show', tagline_time);
-
-                    setTimeout(function () {
-                        resolve();
-                    }, 1500);
-                }, 1500);
-            }, 200);
-        });
-    }
-
-    function drop2025() {
-        return new Promise(async (resolve, reject) => {
-            const circle = hero_el.querySelector('.circle');
-            const startY = -window.innerHeight; // Start above viewport
-            const finalY = circle.getBoundingClientRect().top;
-            const duration = 2000; // Total animation duration in ms
-            const dropDuration = .3;
-            const bounceDuration = 1 - dropDuration;
-
-            let startTime = null;
-
-            function ease(t) {
-                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-            }
-
-            function animate(currentTime) {
-                if (!startTime) {
-                    startTime = currentTime;
-                }
-
-                let elapsed = currentTime - startTime;
-                let progress = Math.min(elapsed / duration, 1);
-
-                // Calculate current Y position
-                let currentY;
-
-                if (progress < dropDuration) { // During drop phase
-                    // Normalize progress for drop phase
-                    let dropProgress = progress / dropDuration;
-                    currentY = startY + (0 - startY) * ease(dropProgress);
-                } else { // During bounce phase
-                    // Normalize progress for bounce phase
-                    let bounceProgress = (progress - dropDuration) / bounceDuration;
-
-                    // Create bouncing effect using sine waves with decreasing amplitude
-                    let bounce = 0;
-                    const amplitudes = [40, 20, 10, 5, 2.5, 1.25];
-                    const frequencies = [1, 2, 4, 8, 16, 32];
-
-                    amplitudes.forEach((amplitude, i) => {
-                        bounce += amplitude *
-                            Math.sin(bounceProgress * Math.PI * frequencies[i]) *
-                            Math.pow(1 - bounceProgress, 1.5);
-                    });
-
-                    currentY = bounce;
-                }
-
-                // Apply the transform
-                circle.style.transform = `translateY(${currentY}px)`;
-
-                // Continue animation if not complete
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    resolve();
-                }
-            }
-
-            // Reset position and start animation
-            circle.style.transform = `translateY(${startY}px)`;
-
-            requestAnimationFrame(animate);
-        });
-    }
-
-    function setVideos() {
-        const els = {
-            send: hero_el.querySelector('.videos').querySelector('.send'),
-            receive: hero_el.querySelector('.videos').querySelector('.receive')
-        };
-
-        const urls = [{
-            url: 'https://befriend.s3.amazonaws.com/befriend-send.mp4',
-            type: 'send'
-        }, {
-            url: 'https://befriend.s3.amazonaws.com/befriend-receive.mp4',
-            type: 'receive'
-        }];
-
-        let loadedVideos = 0;
-        const videoElements = [];
-
-        let videos_ended = 0;
-
-        for(let videoData of urls) {
-            const videoEl = document.createElement('video');
-
-            videoEl.muted = true;
-            videoEl.playsInline = true;
-            videoEl.preload = 'auto';
-            videoEl.autoplay = true;
-            videoEl.loop = true;
-
-            videoEl.setAttribute('playsinline', '');
-            videoEl.setAttribute('webkit-playsinline', '');
-
-            const source = document.createElement('source');
-            source.src = videoData.url;
-            source.type = 'video/mp4';
-            videoEl.appendChild(source);
-
-            // Trying to force play on various events
-            const tryPlay = () => {
-                const playPromise = videoEl.play();
-
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.error("Video play error:", error);
-                        // Try playing again after a short delay
-                        setTimeout(() => {
-                            videoEl.play().catch(e => console.error("Retry play error:", e));
-                        }, 100);
-                    });
-                }
-            };
-
-            videoEl.addEventListener('loadeddata', () => {
-                console.log("loadeddata");
-                loadedVideos++;
-                if (loadedVideos === urls.length) {
-                    videoElements.forEach(video => tryPlay());
-                }
-            });
-
-            videoEl.addEventListener("ended", () => {
-                videos_ended++;
-
-                if(videos_ended === urls.length) {
-                    for(let video of videoElements) {
-                        video.currentTime = 0;
-                        video.play();
-                    }
-
-                    videos_ended = 0;
-                }
-            });
-
-            videoElements.push(videoEl);
-            els[videoData.type].appendChild(videoEl);
-        }
-    }
 
     function signup() {
         let button_el = hero_el.querySelector('.form').querySelector('.button');
@@ -257,23 +196,235 @@
                 fireClick(button_el);
             }
         });
+
+        document.querySelector('.signup .button')
+            .addEventListener('click', function (e) {
+                hero_el.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        requestAnimationFrame(async function () {
-            let arriving_el = hero_el.querySelector('.coming-soon').querySelector('.text');
+        const preloadNext = (n, swiper) => {
+            swiper
+                .slides
+                .slice(swiper.activeIndex, swiper.activeIndex + n + 1)
+                .map(slide => slide.querySelector('img'))
+                .forEach(s => s.setAttribute('loading', 'eager'));
+        };
 
-            await showTagline();
+        // Activity Types Data
+        const activityTypes = [
+            { name: 'Meet', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/meet.png' },
+            { name: 'Eat', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/eat.png' },
+            { name: 'Eat', sub: 'by Food Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/eat-food-type.png' },
+            { name: 'Drink', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/drink.png' },
+            // { name: 'Drink', sub: 'by Alcohol Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/drink-alcohol-type.png' },
+            { name: 'Walk', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/walk.png' },
+            { name: 'Exercise', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/exercise.png' },
+            { name: 'Watch', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/watch.png' },
+            { name: 'Fun', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/fun.png' },
+            { name: 'Dance', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/dance.png' },
+            { name: 'Attend', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/attend.png' },
+            { name: 'Attend', sub: 'by Sports Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/attend-sports-type.png' },
+            { name: 'Attend', sub: 'by Music Type', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/attend-music-type.png' },
+            { name: 'Relax', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/relax.png' },
+            { name: 'Discover', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/discover.png' },
+            // { name: 'Travel', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/travel.png' },
+            { name: 'Shop', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/shop.png' },
+            { name: 'Kids', icon: 'https://befriend.s3.amazonaws.com/preview/activity-types/kids.png' }
+        ];
 
-            addClassEl('show', arriving_el);
+        // Filters Data with descriptions
+        const filters = [
+            { name: 'Availability', description: `Choose when to receive notifications`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/availability.png' },
+            { name: 'Activity Types', description: 'Filter by preferred activities', icon: 'https://befriend.s3.amazonaws.com/preview/filters/activity-types.png' },
+            { name: 'Modes', description: `Meet fellow solo travelers, couples, or families`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/modes.png' },
+            { name: 'Networks', description: `Connect with in-person friends across the entire Befriend network`, icon: 'https://befriend.s3.amazonaws.com/preview/filters/networks.png' },
+            { name: 'Reviews', description: 'Stay safe, find high-quality friends, and meet new people with confidence', icon: 'https://befriend.s3.amazonaws.com/preview/filters/reviews.png' },
+            { name: 'Verifications', description: 'Connect with verified persons', icon: 'https://befriend.s3.amazonaws.com/preview/filters/verifications.png' },
+            { name: 'Distance', description: 'Discover friends nearby and in neighboring cities', icon: 'https://befriend.s3.amazonaws.com/preview/filters/distance.png' },
+            { name: 'Age', description: 'Find friends in your age range', icon: 'https://befriend.s3.amazonaws.com/preview/filters/age.png' },
+            { name: 'Genders', description: 'Filter by gender preference', icon: 'https://befriend.s3.amazonaws.com/preview/filters/genders.png' },
+            { name: 'Movies', description: 'Find friends with similar movie tastes', icon: 'https://befriend.s3.amazonaws.com/preview/filters/movies.png' },
+            { name: 'TV Shows', description: 'Connect through favorite TV shows', icon: 'https://befriend.s3.amazonaws.com/preview/filters/tv-shows.png' },
+            { name: 'Sports', description: 'Find friends who are passionate about the same teams, leagues, and sports', icon: 'https://befriend.s3.amazonaws.com/preview/filters/sports.png' },
+            { name: 'Music', description: 'Connect through shared music interests', icon: 'https://befriend.s3.amazonaws.com/preview/filters/music.png' },
+            { name: 'Instruments', description: 'Connect with fellow musicians', icon: 'https://befriend.s3.amazonaws.com/preview/filters/instruments.png' },
+            { name: 'Schools', description: 'Find alumni from your middle school, high school, or university', icon: 'https://befriend.s3.amazonaws.com/preview/filters/schools.png' },
+            { name: 'Work', description: 'Connect with professionals by industry and role', icon: 'https://befriend.s3.amazonaws.com/preview/filters/work.png' },
+            { name: 'Life Stages', description: 'Connect with people in a similar life stage', icon: 'https://befriend.s3.amazonaws.com/preview/filters/life-stages.png' },
+            { name: 'Relationships', description: 'Find friends with similar relationship status', icon: 'https://befriend.s3.amazonaws.com/preview/filters/relationships.png' },
+            { name: 'Languages', description: 'Find friends who speak your language', icon: 'https://befriend.s3.amazonaws.com/preview/filters/languages.png' },
+            { name: 'Politics', description: 'Filter by political views', icon: 'https://befriend.s3.amazonaws.com/preview/filters/politics.png' },
+            { name: 'Religions', description: 'Connect with people of similar faith', icon: 'https://befriend.s3.amazonaws.com/preview/filters/religions.png' },
+            { name: 'Drinking', description: 'Find friends with similar drinking habits', icon: 'https://befriend.s3.amazonaws.com/preview/filters/drinking.png' },
+            { name: 'Smoking', description: 'Filter by smoking preferences', icon: 'https://befriend.s3.amazonaws.com/preview/filters/smoking.png' },
+        ];
 
-            setTimeout(async function () {
-                await drop2025();
-            }, 1000);
+        // Populate Activity Types Swiper
+        const activitySwiperWrapper = document.querySelector('.activity-types .swiper-wrapper');
+
+        // Generate activity type slides
+        activityTypes.forEach(activity => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+
+            let sub_name = '';
+            if(activity.sub) {
+                sub_name = `<div class="activity-sub-name">${activity.sub}</div>`;
+            }
+
+            slide.innerHTML = `
+          <div class="activity-card" data-activity="${activity.name.toLowerCase()}">
+            <div class="activity-icon">
+              <img src="${activity.icon}" alt="${activity.name}" loading="lazy" />
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="name-container">
+                <div class="activity-name">${activity.name}</div>
+                ${sub_name}
+            </div>
+          </div>
+        `;
+
+            activitySwiperWrapper.appendChild(slide);
+        });
+
+        // Populate Filters Swiper
+        const filterSwiperWrapper = document.querySelector('.filters .swiper-wrapper');
+
+        // Generate filter slides
+        filters.forEach(filter => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+
+            slide.innerHTML = `
+          <div class="filter-card" data-filter="${filter.name.toLowerCase().replace(/\s+/g, '-')}">
+            <div class="filter-icon">
+              <img src="${filter.icon}" alt="${filter.name}" loading="lazy" />
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="name-container">
+                <div class="filter-name">${filter.name}</div>
+                <div class="filter-description">${filter.description}</div>
+            </div>
+          </div>
+        `;
+
+            filterSwiperWrapper.appendChild(slide);
+        });
+
+        // Initialize Activity Types Swiper
+        const activitySwiper = new Swiper('.activity-types .swiper', {
+            slidesPerView: 1.3,
+            spaceBetween: 10,
+            grabCursor: true,
+            lazyPreloadPrevNext: 2,
+            pagination: {
+                el: '.activity-types .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.activity-types .swiper-button-next',
+                prevEl: '.activity-types .swiper-button-prev',
+            },
+            breakpoints: {
+                600: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 15
+                },
+                1024: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 20
+                },
+                1300: {
+                    slidesPerView: 4,
+                    spaceBetween: 20
+                },
+                1600: {
+                    slidesPerView: 4.5,
+                    spaceBetween: 20
+                },
+            }
+        });
+
+        // Initialize Filters Swiper
+        const filterSwiper = new Swiper('.filters .swiper', {
+            slidesPerView: 1.3,
+            spaceBetween: 20,
+            grabCursor: true,
+            lazyPreloadPrevNext: 2,
+            pagination: {
+                el: '.filters .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.filters .swiper-button-next',
+                prevEl: '.filters .swiper-button-prev',
+            },
+            breakpoints: {
+                600: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 30
+                },
+                1300: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
+                },
+                1600: {
+                    slidesPerView: 4.5,
+                    spaceBetween: 30
+                },
+            }
+        });
+
+        preloadNext(2, activitySwiper);
+        preloadNext(2, filterSwiper);
+
+        activitySwiper.on('slideChange', () => preloadNext(2, activitySwiper));
+        filterSwiper.on('slideChange', () => preloadNext(2, filterSwiper));
+
+        document.querySelectorAll('.activity-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const activityType = this.getAttribute('data-activity');
+                console.log(`Selected activity: ${activityType}`);
+            });
+        });
+
+        document.querySelectorAll('.filter-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const filterType = this.getAttribute('data-filter');
+                console.log(`Selected filter: ${filterType}`);
+            });
         });
     });
 
-    setVideos();
+    const previewLinks = document.querySelectorAll('.links a[href^="/#preview-"]');
+
+    previewLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href').split('#')[1];
+            const targetSection = document.getElementById(targetId);
+
+            if (window.location.pathname === '/' && targetSection) {
+                e.preventDefault();
+
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                history.pushState(null, null, `#${targetId}`);
+            }
+        });
+    });
 
     signup();
 

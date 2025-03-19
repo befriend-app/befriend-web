@@ -30,11 +30,7 @@ router.get('/non-profit', function (req, res, next) {
 
 router.get('/preview', function (req, res, next) {
     return new Promise(async (resolve, reject) => {
-        try {
-            await webController.getPreview(req, res);
-        } catch (e) {
-            return res.json("Error loading page", 400);
-        }
+        res.redirect('/');
 
         resolve();
     });
