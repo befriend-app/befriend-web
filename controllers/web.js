@@ -17,8 +17,8 @@ module.exports = {
             }
 
             res.render('pages/home', {
-                title: `Befriend: The Future of Happiness.`,
-                description: `Safe, real-time in-person activities with 20+ state-of-the-art filters.`,
+                title: `Befriend: Real Friends, Real-Time`,
+                description: `Befriend is a real-time, in-person app for making friends with nearly 300 activity categories and 20+ state-of-the-art filters.`,
                 count: count
             });
 
