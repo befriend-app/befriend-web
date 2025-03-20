@@ -287,7 +287,7 @@
 
             @media (max-width: 768px) {
                 flex-direction: column !important;
-                padding: 60px 5vw;
+                padding: 50px 5vw;
                 min-height: auto;
                 //margin-bottom: 20px;
             }
@@ -319,7 +319,6 @@
                     display: flex;
                     color: $brand_color_a;
                     align-items: center;
-                    justify-content: center;
                     text-align: center;
 
                     @media (max-width: 1301px) {
@@ -327,16 +326,25 @@
                     }
 
                     @media (max-width: 1201px) {
-                        font-size: 2.5rem;
+                        font-size: 2.2rem;
+                    }
+
+                    @media (max-width: 901px) {
+                        font-size: 2rem;
+                        margin-bottom: 10px;
+                        justify-content: center;
                     }
 
                     @media (max-width: 768px) {
                         font-size: 2.5rem;
-                        margin-bottom: 10px;
                     }
 
-                    @media (max-width: 501px) {
-                        font-size: 2.2rem;
+                    @media (max-width: 401px) {
+                        font-size: 2rem;
+                    }
+
+                    @media (max-width: 371px) {
+                        font-size: 1.8rem;
                     }
 
                     .badge {
@@ -588,9 +596,12 @@
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 15px;
+                height: 80vh;
+                max-height: 80vh;
 
                 img {
                     max-width: 100%;
+                    width: auto;
                     max-height: 100%;
                     object-fit: contain;
                 }

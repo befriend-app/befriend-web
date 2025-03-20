@@ -176,6 +176,8 @@ header {
             flex-direction: column;
             gap: 30px;
             font-size: 24px;
+            overflow-y: auto;
+            height: calc(100% - #{$total_header_h});
 
             a {
                 display: flex;

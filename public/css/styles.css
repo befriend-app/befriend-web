@@ -5,7 +5,7 @@
   background-color: #2d86c7;
   color: white;
   text-align: center;
-  height: 40px;
+  height: 0px;
   font-weight: 500;
   font-size: 14px;
 }
@@ -122,7 +122,7 @@ header .links .in-person {
 header .mobile-menu {
   display: none;
   position: fixed;
-  top: 40px;
+  top: 0px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -147,6 +147,8 @@ header .mobile-menu .mobile-menu-content {
   flex-direction: column;
   gap: 30px;
   font-size: 24px;
+  overflow-y: auto;
+  height: calc(100% - 70px);
 }
 header .mobile-menu .mobile-menu-content a {
   display: flex;
@@ -219,7 +221,7 @@ footer .section .links .link {
   opacity: 1;
 }
 #page.home .hero {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 70px);
   width: 100%;
   display: flex;
   position: relative;
@@ -441,7 +443,7 @@ footer .section .links .link {
 @media (max-width: 768px) {
   #page.home .preview .section {
     flex-direction: column !important;
-    padding: 60px 5vw;
+    padding: 50px 5vw;
     min-height: auto;
   }
 }
@@ -472,7 +474,6 @@ footer .section .links .link {
   display: flex;
   color: #2d86c7;
   align-items: center;
-  justify-content: center;
   text-align: center;
 }
 @media (max-width: 1301px) {
@@ -482,18 +483,29 @@ footer .section .links .link {
 }
 @media (max-width: 1201px) {
   #page.home .preview .section .section-content h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 901px) {
+  #page.home .preview .section .section-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    justify-content: center;
   }
 }
 @media (max-width: 768px) {
   #page.home .preview .section .section-content h2 {
     font-size: 2.5rem;
-    margin-bottom: 10px;
   }
 }
-@media (max-width: 501px) {
+@media (max-width: 401px) {
   #page.home .preview .section .section-content h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+}
+@media (max-width: 371px) {
+  #page.home .preview .section .section-content h2 {
+    font-size: 1.8rem;
   }
 }
 #page.home .preview .section .section-content h2 .badge {
@@ -705,9 +717,12 @@ footer .section .links .link {
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
+  height: 80vh;
+  max-height: 80vh;
 }
 #page.home .preview .activity-card .activity-icon img, #page.home .preview .activity-card .filter-icon img, #page.home .preview .filter-card .activity-icon img, #page.home .preview .filter-card .filter-icon img {
   max-width: 100%;
+  width: auto;
   max-height: 100%;
   object-fit: contain;
 }
