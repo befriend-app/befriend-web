@@ -25,11 +25,11 @@ module.exports = {
             resolve();
         });
     },
-    getNonProfit: function (req, res) {
+    getAbout: function (req, res) {
         return new Promise(async (resolve, reject) => {
-            res.render('pages/non-profit', {
-                title: `Befriend: Non-Profit Friends App.`,
-                description: `The Non-profit app for in-person friends.`,
+            res.render('pages/about', {
+                title: `Befriend | About'`,
+                description: `We're a non-profit network of in-person friend apps with the mission of increasing life expectancy of humans by at least 2 years.`,
             });
 
             resolve();

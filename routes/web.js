@@ -16,13 +16,21 @@ router.get('/', function (req, res, next) {
     });
 });
 
-router.get('/non-profit', function (req, res, next) {
+router.get('/about', function (req, res, next) {
     return new Promise(async (resolve, reject) => {
         try {
-            await webController.getNonProfit(req, res);
+            await webController.getAbout(req, res);
         } catch (e) {
             return res.json("Error loading page", 400);
         }
+
+        resolve();
+    });
+});
+
+router.get('/non-profit', function (req, res, next) {
+    return new Promise(async (resolve, reject) => {
+        res.redirect('/about');
 
         resolve();
     });
