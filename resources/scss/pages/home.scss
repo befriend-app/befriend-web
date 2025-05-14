@@ -362,8 +362,10 @@
                         vertical-align: middle;
                         margin-left: 10px;
                         font-weight: 600;
-                        position: relative;
                         box-shadow: 0 4px 10px rgba($brand_color_a, 0.3);
+                        position: absolute;
+                        left: 0;
+                        top: -36px;
                     }
                 }
 
