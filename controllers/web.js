@@ -28,7 +28,7 @@ module.exports = {
     getAbout: function (req, res) {
         return new Promise(async (resolve, reject) => {
             res.render('pages/about', {
-                title: `Befriend | About'`,
+                title: `Befriend | About`,
                 description: `We're a non-profit network of in-person friend apps with the mission of increasing life expectancy of humans by at least 2 years.`,
             });
 
