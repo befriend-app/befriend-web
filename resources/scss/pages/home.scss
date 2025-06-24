@@ -40,20 +40,8 @@
         background: linear-gradient(135deg, $brand_color_b 0%, lighten($brand_color_b, 5%) 100%);
 
         @media (max-width: 768px) {
-            &::after {
-                //content: '';
-                //position: absolute;
-                //top: 0;
-                //left: 0;
-                //width: 100%;
-                //height: 100%;
-                //background-image: url('https://befriend.s3.amazonaws.com/preview/home-hero.png');
-                //background-position: center;
-                //background-size: contain;
-                //background-repeat: no-repeat;
-                //opacity: 0.3; // Adjust for better blending
-                //z-index: 1;
-            }
+            height: fit-content;
+            padding: 30px 0;
         }
 
         .hero-content {
@@ -70,6 +58,14 @@
             @media (max-width: 768px) {
                 align-items: center;
                 padding: 0;
+            }
+        }
+
+        .mobile-image {
+            display: none;
+
+            @media (max-width: 768px) {
+                display: flex;
             }
         }
 
@@ -94,6 +90,13 @@
             background-size: contain;
             background-repeat: no-repeat;
             height: 100%;
+
+            @media (max-width: 768px) {
+                width: 90vw;
+                height: 90vw / $r;
+                max-height: 80vh;
+                max-width: 80vh * $r;
+            }
         }
 
         .tagline {
@@ -101,7 +104,7 @@
             margin-bottom: 30px;
 
             h1 {
-                font-size: 5rem;
+                font-size: 3rem;
                 font-weight: 700;
                 margin: 0;
                 line-height: 1.5;
@@ -109,26 +112,28 @@
                 display: flex;
                 flex-direction: column;
 
-                @media (max-width: 1250px) {
-                    font-size: 4rem;
-                }
-
+                //@media (max-width: 1250px) {
+                //    font-size: 4rem;
+                //}
+                //
                 @media (max-width: 1001px) {
-                    font-size: 3.5rem;
+                    font-size: 2.4rem;
                 }
+                //
+                //@media (max-width: 901px) {
+                //    font-size: 3rem;
+                //}
+                //
+                //@media (max-width: 480px) {
+                //    font-size: 2.5rem;
+                //}
 
-                @media (max-width: 901px) {
-                    font-size: 3rem;
-                }
-
-                @media (max-width: 480px) {
-                    font-size: 2.5rem;
-                }
-
-                .real {
+                .highlight {
                     color: $brand_color_a;
                     position: relative;
                     display: inline-block;
+                    font-size: 1.6rem;
+                    margin-top: 10px;
                 }
             }
         }
