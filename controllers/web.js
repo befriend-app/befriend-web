@@ -17,8 +17,8 @@ module.exports = {
             }
 
             res.render('pages/home', {
-                title: `Befriend: Real Friends, Real-Time`,
-                description: `Befriend is a real-time, in-person app for making friends with nearly 300 activity categories and 20+ state-of-the-art filters.`,
+                title: `Befriend: Global Happiness in Development`,
+                description: `Befriend is a non-profit app with the mission of making Earth a happier place by making it easier to make friends.`,
                 count: count
             });
 
