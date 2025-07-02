@@ -17,7 +17,7 @@ module.exports = {
             }
 
             res.render('pages/home', {
-                title: `Befriend: Global Happiness in Development`,
+                title: `Befriend: The Future of Global Happiness`,
                 description: `Befriend is a non-profit app with the mission of making Earth a happier place by making it easier to make friends.`,
                 count: count
             });
