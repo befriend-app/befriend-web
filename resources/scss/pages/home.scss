@@ -103,9 +103,17 @@
             max-width: 800px;
             margin-bottom: 30px;
 
+            .non-profit {
+                background-color: $brand_color_a;
+                border-radius: 10px;
+                width: fit-content;
+                padding: 4px 16px;
+                color: white;
+            }
+
             h1 {
                 font-size: 3rem;
-                font-weight: 700;
+                font-weight: 600;
                 margin: 0;
                 line-height: 1.5;
                 color: $dark-gray;

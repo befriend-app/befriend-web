@@ -363,9 +363,16 @@ footer .section .links .link {
   max-width: 800px;
   margin-bottom: 30px;
 }
+#page.home .hero .tagline .non-profit {
+  background-color: #2d86c7;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 4px 16px;
+  color: white;
+}
 #page.home .hero .tagline h1 {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
   line-height: 1.5;
   color: #333333;
