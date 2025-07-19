@@ -365,8 +365,9 @@
                     }
 
                     .badge {
+                        display: none;
                         height: fit-content;
-                        display: inline-block;
+                        //display: inline-block;
                         padding: 5px 15px;
                         font-size: 1rem;
                         background-color: $brand_color_a;

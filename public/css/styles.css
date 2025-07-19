@@ -603,8 +603,8 @@ footer .section .links .link {
   }
 }
 #page.home .preview .section .section-content h2 .badge {
+  display: none;
   height: fit-content;
-  display: inline-block;
   padding: 5px 15px;
   font-size: 1rem;
   background-color: #2d86c7;
